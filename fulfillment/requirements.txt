@@ -1,0 +1,6 @@
+# I Need a Well — fulfillment pipeline dependencies.
+# The pipeline's only third-party dependency (everything else is the
+# Python standard library): requests, for the public-data calls
+# (Nominatim geocoding, CT Socrata well records, Water Quality
+# Portal). Unpinned, mirroring the repo-root requirements.txt.
+requests

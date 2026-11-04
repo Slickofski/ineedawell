@@ -1,0 +1,17 @@
+{
+  "order_id": "ORD-20260918-test-user-193-wells-rd",
+  "tier": "free",
+  "amount_usd": 0,
+  "paid": false,
+  "test": true,
+  "stripe_payment_id": null,
+  "customer": {
+    "name": "Test User",
+    "email": "test@example.com",
+    "phone": ""
+  },
+  "property_address": "193 Wells Rd, Broad Brook, CT 06016",
+  "lat": null,
+  "lon": null,
+  "status": "intake_complete"
+}

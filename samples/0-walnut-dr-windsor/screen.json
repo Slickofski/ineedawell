@@ -1,0 +1,188 @@
+{
+  "document": "well_snapshot",
+  "format_version": "1",
+  "generated": "2026-11-04",
+  "order_id": "0-walnut-dr-windsor",
+  "tier": "free",
+  "property_address": "0 Walnut Dr, Windsor, CT 06095",
+  "parcel_acres": 13.3,
+  "audience": "developer_tract",
+  "coordinates": {
+    "lat": 41.924,
+    "lon": -72.707,
+    "source": "nominatim",
+    "display_name": "Walnut Drive, Windsor, Capitol Planning Region, Connecticut, 06095, United States"
+  },
+  "verdict": {
+    "class": "caution",
+    "headline": "Wells here were sealed \u2014 check for a street main before budgeting",
+    "detail": "No water-supply wells in the online record (filings since 2021) for this 13.3-acre tract \u2014 but the record is not empty: 5 of the filings near this parcel are well abandonments, and town-wide in Windsor the record shows 47 abandonments against 0 water-supply wells. The filings don't say WHY those wells were sealed \u2014 replacement wells, demolitions and public-water hookups all produce abandonment records. A public main arriving is one possible explanation, so check whether public water serves this lot (water company, health district) before budgeting for a well at all. It matters beyond convenience: under CT rules (Public Health Code \u00a719-13-B51m), a well permit can be barred when a parcel boundary sits within 200 ft of an approved public water supply. At tract scale that can change the whole approval picture: public water at the street may serve the lots, or bar wells lot by lot."
+  },
+  "nearby_wells": {
+    "total_water_supply_wells": 0,
+    "wells_with_depth_yield": 0,
+    "depth_count": 0,
+    "yield_count": 0,
+    "zero_yield_count": 0,
+    "missing_yield_count": 0,
+    "missing_depth_count": 0,
+    "records_in_radius": 5,
+    "abandonment_records_in_radius": 5,
+    "town_water_supply_count": 0,
+    "town_abandonment_count": 47,
+    "radius_m": 3000,
+    "depth_ft": null,
+    "yield_gpm": null,
+    "well_strength": {
+      "tests_with_full_details": 0,
+      "tests_with_valid_details": 0,
+      "invalid_tests_excluded": 0,
+      "sustained_yield": "unestablished",
+      "tests_judged": 0,
+      "worked_to_bottom": 0,
+      "held_level": 0,
+      "note": null
+    },
+    "borehole_storage": {
+      "wells_with_column": 0,
+      "excluded_impossible": 0,
+      "median_column_ft": null,
+      "median_storage_gal_6in_bore": null
+    },
+    "town": "Windsor",
+    "stats_town": "Windsor",
+    "town_stats_fallback": false,
+    "town_depth_ft": {
+      "p90": null,
+      "median": null,
+      "n": 0,
+      "water_supply_n": 0,
+      "abandonment_n": 47
+    },
+    "source": "CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01)",
+    "pulled_at": null,
+    "planning_note": "Plan against the geology, not the average: budget for the deep end of the local depth range and price the dry/low-yield downside (+$10k-$25k contingency) before committing.",
+    "wells": []
+  },
+  "cost_band_usd": null,
+  "water_quality": {
+    "flags": [
+      {
+        "title": "Water quality \u2014 the state panel covers it",
+        "summary": "Connecticut requires arsenic and uranium testing on every new well \u2014 the two contaminants that actually show up in CT bedrock \u2014 so the lab runs the state panel as routine. Radon is optional; ask the lab whether to add it, and get the panel price when you book.",
+        "detail": "Water Quality Portal: 883 uninterpreted regional arsenic sample rows within 25 miles \u2014 not a parcel finding. CT DPH/USGS private-well study: 3.9% of sampled CT wells exceeded the arsenic MCL. Water Quality Portal: 2544 uninterpreted regional uranium sample rows within 25 miles \u2014 not a parcel finding. CT DPH/USGS private-well study: 4.7% exceeded the uranium MCL. No queryable public result dataset for radon in water found."
+      }
+    ],
+    "source": "Water Quality Portal (EPA/USGS) Result search, CSV",
+    "note": "Counts are regional sample rows, not parcel predictions. Connecticut requires arsenic and uranium testing for newly constructed private and semipublic wells (CT DPH, effective Oct 1, 2022) \u2014 confirm the exact panel with a certified lab.",
+    "final_word": "Risk flags are not a prediction. Laboratory testing of the finished well is the final word."
+  },
+  "setbacks": [
+    {
+      "rule": "Well to septic system and its leaching field (where septic water drains into the soil), buried oil tank, or other pollution source",
+      "minimum_ft": 75,
+      "condition": "Well with a required withdrawal rate under 10 gpm \u2014 the band a single-family home sits in.",
+      "scales_with": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
+      "status": "needs_field_verification",
+      "source": "CT Public Health Code Reg. 19-13-B51d(a)(2)"
+    },
+    {
+      "rule": "Well to surface water (high-water mark) / surface-water or foundation drain",
+      "minimum_ft": 25,
+      "condition": "Well with a required withdrawal rate under 10 gpm.",
+      "scales_with": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
+      "status": "needs_field_verification",
+      "source": "CT Public Health Code Reg. 19-13-B51d(a)(3)"
+    },
+    {
+      "rule": "Well to tight-joint sewer (extra-heavy cast iron, leaded joints, or equal)",
+      "minimum_ft": 25,
+      "condition": "Tight-joint sewer only; well with a required withdrawal rate under 10 gpm.",
+      "scales_with": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
+      "status": "needs_field_verification",
+      "source": "CT Public Health Code Reg. 19-13-B51d(a)(2)"
+    },
+    {
+      "rule": "Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow \u2014 the distance doubles",
+      "minimum_ft": 150,
+      "condition": "Applies when BOTH hold: soil percolation rate faster than 1.0 minute per inch, AND the bottom of the leaching system is less than 8 ft above ledge rock. For a single-family home the 75 ft distance becomes 150 ft. Only soil tests on the lot can settle whether this applies \u2014 it cannot be screened from public data.",
+      "scales_with": null,
+      "status": "needs_field_verification",
+      "source": "CT DPH Technical Standards for Subsurface Sewage Disposal Systems, Table 1 Item A (applied to wells via Reg. 19-13-B102d)"
+    }
+  ],
+  "next_steps": [
+    {
+      "title": "Read the verdict above.",
+      "detail": "That is the 60-second answer. Everything below is the evidence."
+    },
+    {
+      "title": "Put the cost band in your offer math.",
+      "detail": "Include the dry-hole contingency before you fall in love with the lot."
+    },
+    {
+      "title": "Get 2\u20133 driller quotes before you commit.",
+      "detail": "Ask each: what depth would you permit for here, and what exactly happens if the hole is dry?"
+    },
+    {
+      "title": "After offer accepted: health district.",
+      "detail": "Site review, soil/perc tests, and permits run through the local health district \u2014 your driller signs the state permit as applicant."
+    },
+    {
+      "title": "Drill, then lab-test the water.",
+      "detail": "Connecticut requires arsenic and uranium testing for new wells \u2014 confirm the panel with a certified lab, and ask whether radon makes sense for your lot."
+    }
+  ],
+  "permit_authority": "the Windsor Health Department",
+  "permit_roadmap": [
+    {
+      "step": "Before you commit: get driller quotes",
+      "who": "You",
+      "detail": "Get 2\u20133 quotes from Connecticut-licensed well drillers. Ask each one: what depth would you permit for this lot, and what exactly do I pay if the hole comes up dry?"
+    },
+    {
+      "step": "Verify the driller's license",
+      "who": "You",
+      "detail": "Well drillers must hold a Connecticut Department of Consumer Protection license. Check it before you sign anything \u2014 an unlicensed driller can't pull your permit."
+    },
+    {
+      "step": "File the well permit",
+      "who": "Your driller files it; you pay the fee",
+      "detail": "Your driller signs the state permit application as applicant and files it with the Windsor Health Department. The fee is set by the district, not the state: it is $200 in the North Central District and $150 in Bloomfield's district, to give the local range. Confirm the current fee with the district before the driller files. Nothing gets drilled before this is approved."
+    },
+    {
+      "step": "Pass the site and setback review",
+      "who": "The health district",
+      "detail": "The district confirms the proposed well spot meets CT setbacks (Public Health Code \u00a719-13-B51d): 75 ft from septic and other pollution sources for a typical home well \u2014 the band follows the home\u2019s required withdrawal rate (its water demand), not the well\u2019s tested yield; the 150 ft band is for larger or shared supplies that must deliver 10\u201350 gpm, and 200 ft above 50 gpm. Plus 25 ft from surface water and drains (50 ft in the higher bands). One rule can change this number: if the soil drains very fast (perc faster than 1 minute per inch) and ledge rock is shallow (leaching bottom less than 8 ft above it), the state doubles the well-to-septic distance \u2014 150 ft for a typical home. That is only known after a perc test, which happens at permit time. This is the step that kills bad lot layouts \u2014 better to learn it now than after you own the lot."
+    },
+    {
+      "step": "Drill the well",
+      "who": "Your driller",
+      "detail": "You pay for the attempt whether the hole comes up wet or dry \u2014 that's why the cost band in this snapshot carries the dry-hole contingency. Get the driller's dry-hole policy in writing."
+    },
+    {
+      "step": "Lab-test the water",
+      "who": "You, through a certified lab",
+      "detail": "Every new CT well must be lab-tested on the state-required baseline panel \u2014 15 tests, including arsenic and uranium (CGS 19a-37(c)(2), since October 1, 2022). If the well serves an existing structure, a first-draw lead sample from the plumbing is also required. Ask the lab whether radon testing makes sense for your lot too \u2014 the water section above flags what your area's geology suggests."
+    },
+    {
+      "step": "Get the health authority's compliance determination",
+      "who": "Your local health authority",
+      "detail": "The lab results go to your local health authority, which determines whether they comply with the state maximum contaminant levels. The well may not be used for domestic purposes until the health authority makes that determination (CGS 19a-37(c)(2))."
+    },
+    {
+      "step": "Keep your paperwork",
+      "who": "You",
+      "detail": "Get a copy of the well completion report your driller files with the state, and keep it with the deed. Future buyers \u2014 and future you \u2014 will want it."
+    }
+  ],
+  "provenance": {
+    "well_records": "CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01)",
+    "water_quality": "Water Quality Portal (EPA/USGS) Result search, CSV",
+    "setback_rules": "CT Public Health Code 19-13-B51 + CT DPH Technical Standards + district publications, from the verified rules table (Oct 2026) \u2014 field verification required",
+    "data_limitations": "Well records: online filings only (since 2021); older wells exist on paper. Water quality: regional samples, not a parcel prediction. Setbacks: state rules verified Oct 2026; district add-ons confirmed only where the district publishes them."
+  },
+  "disclaimer": "Screening-level report from public data. Not a substitute for an engineered site plan, wetlands delineation, soil/perc testing, or laboratory testing of the finished well. Verify all rules, fees, and parcel details against current authoritative documents before acting.",
+  "pilot_note": "Free pilot. Nobody was contacted on behalf of the requester.",
+  "companion_html": "screen.html"
+}

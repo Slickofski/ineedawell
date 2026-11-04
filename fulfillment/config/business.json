@@ -1,0 +1,14 @@
+{
+  "_note": "Business identity for customer-facing deliverables. Ships with placeholder values - replace them with your own business identity before sending anyone anything. This file is NOT for secrets (no EIN, no bank details, no passwords).",
+  "address": "YOUR BUSINESS ADDRESS",
+  "coverage": "Connecticut",
+  "email": "YOUR BUSINESS EMAIL",
+  "legal_name": "I Need a Well",
+  "phone": "YOUR BUSINESS PHONE",
+  "pilot_inbox": "YOUR BUSINESS EMAIL",
+  "product_name": "I Need a Well",
+  "report_disclaimer": "Screening-level report from public data. Not a substitute for an engineered site plan, wetlands delineation, soil/perc testing, or laboratory testing of the finished well. Verify all rules, fees, and parcel details against current authoritative documents before acting.",
+  "report_price_usd": null,
+  "tagline": "Know your water before you buy the land.",
+  "website": "https://ineedawell.com"
+}

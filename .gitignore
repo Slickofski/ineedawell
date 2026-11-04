@@ -1,0 +1,10 @@
+# Runtime data - generated locally, never committed
+orders/
+outbox/
+pulls/
+
+# Secrets / local config
+.env*
+
+# Python
+__pycache__/

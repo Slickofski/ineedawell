@@ -1,0 +1,51 @@
+{
+  "parcel_data_available": false,
+  "items": [
+    {
+      "id": "septic",
+      "rule": "Well to septic system / leaching field / buried oil tank / other pollution source",
+      "minimum_ft": 75,
+      "condition": "Well with a required withdrawal rate under 10 gpm \u2014 the band a single-family home sits in (see ct_band_basis_operating_assumption).",
+      "scales": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
+      "source": "CT Public Health Code Reg. 19-13-B51d(a)(2)",
+      "confidence": "CODE",
+      "status": "needs_field_verification",
+      "finding": "Parcel GIS not yet ingested \u2014 distances must be confirmed on the engineered site plan and in the field by the sanitarian/engineer before filing."
+    },
+    {
+      "id": "watercourse",
+      "rule": "Well to surface water (high-water mark) / surface-water or foundation drain",
+      "minimum_ft": 25,
+      "condition": "Well with a required withdrawal rate under 10 gpm.",
+      "scales": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
+      "source": "CT Public Health Code Reg. 19-13-B51d(a)(3)",
+      "confidence": "CODE",
+      "status": "needs_field_verification",
+      "finding": "Parcel GIS not yet ingested \u2014 distances must be confirmed on the engineered site plan and in the field by the sanitarian/engineer before filing."
+    },
+    {
+      "id": "sewer",
+      "rule": "Well to tight-joint sewer (extra-heavy cast iron, leaded joints, or equal)",
+      "minimum_ft": 25,
+      "condition": "Tight-joint sewer only; well with a required withdrawal rate under 10 gpm.",
+      "scales": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
+      "source": "CT Public Health Code Reg. 19-13-B51d(a)(2)",
+      "confidence": "CODE",
+      "status": "needs_field_verification",
+      "finding": "Parcel GIS not yet ingested \u2014 distances must be confirmed on the engineered site plan and in the field by the sanitarian/engineer before filing."
+    },
+    {
+      "id": "doubling_rule",
+      "rule": "Well to leaching system IF the soil is fast AND the ledge is shallow \u2014 the distance doubles",
+      "minimum_ft": 150,
+      "condition": "Applies when BOTH hold: soil percolation rate faster than 1.0 minute per inch, AND the bottom of the leaching system is less than 8 ft above ledge rock. For a single-family home the 75 ft distance becomes 150 ft. Only soil tests on the lot can settle whether this applies \u2014 it cannot be screened from public data.",
+      "scales": null,
+      "source": "CT DPH Technical Standards for Subsurface Sewage Disposal Systems, Table 1 Item A (applied to wells via Reg. 19-13-B102d)",
+      "confidence": "CODE",
+      "status": "needs_field_verification",
+      "finding": "Parcel GIS not yet ingested \u2014 distances must be confirmed on the engineered site plan and in the field by the sanitarian/engineer before filing."
+    }
+  ],
+  "confidence_note": "State rules verified; district add-ons unconfirmed (district not yet mapped for this town).",
+  "note": "Screening-level checklist only. Not a substitute for survey, wetlands delineation, or field soil/perc tests."
+}

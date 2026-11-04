@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Need a Well &mdash; 0 Ellsworth Rd, East Windsor, CT 06016</title>
+<style>
+:root{
+  --ink:#16283a; --muted:#5b6b7f; --line:#e2e8f0;
+  --teal:#0f766e; --teal-dk:#115e59; --teal-bg:#ecfdf5;
+  --amber:#b45309; --amber-bg:#fffbeb;
+  --slate:#0f2233; --card:#ffffff; --page:#f1f5f9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 60px}
+.hero{background:linear-gradient(135deg,#0f2233 0%,#16455b 60%,#0f766e 100%);
+  color:#fff;border-radius:18px;padding:34px 32px;margin-bottom:22px;
+  box-shadow:0 12px 32px rgba(15,34,51,.25)}
+.hero .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.75;margin-bottom:8px}
+.hero h1{margin:0 0 6px;font-size:30px;line-height:1.2;letter-spacing:-.01em}
+.hero .addr{font-size:16px;opacity:.92}
+.hero .meta{margin-top:16px;font-size:13px;opacity:.75;display:flex;gap:18px;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:0 2px 10px rgba(15,34,51,.05)}
+.card h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+.card .sub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+.verdict{border-left:6px solid var(--teal);background:var(--teal-bg)}
+.verdict.caution{border-left-color:var(--amber);background:var(--amber-bg)}
+.verdict .word{font-size:24px;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}
+.verdict p{margin:6px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;margin-top:16px}
+.stat{background:rgba(255,255,255,.75);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px}
+.stat .n{font-size:22px;font-weight:800;color:var(--teal-dk)}
+.verdict.caution .stat .n{color:var(--amber)}
+.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.wellbar{margin:10px 0}
+.wellbar .top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:4px}
+.wellbar .top .a{font-weight:600}
+.wellbar .top .b{color:var(--muted);white-space:nowrap;margin-left:12px}
+.track{height:14px;background:#eef2f7;border-radius:7px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,#14b8a6,#0f766e);border-radius:7px}
+.scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px}
+.scenarios{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.scenario{border:1px solid var(--line);border-radius:12px;padding:16px}
+.scenario .t{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--muted);margin-bottom:6px}
+.scenario .c{font-size:26px;font-weight:800;letter-spacing:-.01em}
+.scenario .m{font-size:12.5px;color:var(--muted);margin-top:6px}
+.scenario.hot{border-color:#f59e0b;background:var(--amber-bg)}
+ul.flags{margin:0;padding:0;list-style:none}
+ul.flags li{padding:10px 0 10px 30px;position:relative;border-bottom:1px dashed var(--line)}
+ul.flags li:last-child{border-bottom:none}
+ul.flags li::before{content:"!";position:absolute;left:0;top:10px;width:20px;height:20px;
+  border-radius:50%;background:var(--amber-bg);color:var(--amber);font-weight:800;
+  font-size:13px;text-align:center;line-height:20px;border:1px solid #fcd34d}
+.flag{padding:12px 0;border-bottom:1px dashed var(--line)}
+.flag:last-child{border-bottom:none}
+.flag .ftitle{font-weight:800;font-size:15.5px;margin-bottom:3px}
+.flag .fsummary{font-size:14px;color:var(--ink)}
+.flag details.fdetail{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.flag details.fdetail summary{cursor:pointer;font-weight:600;color:var(--teal-dk)}
+.setback{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.setback:last-child{border-bottom:none}
+.badge{flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:20px;padding:3px 10px;height:fit-content;margin-top:2px}
+.badge.ok{background:var(--teal-bg);color:var(--teal-dk);border:1px solid #99f6e4}
+.badge.warn{background:var(--amber-bg);color:var(--amber);border:1px solid #fcd34d}
+.drillers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.driller{border:1px solid var(--line);border-radius:12px;padding:16px}
+.driller .co{font-weight:800;font-size:15.5px;margin-bottom:2px}
+.driller .tw{color:var(--muted);font-size:13px;margin-bottom:10px}
+.driller .ct{font-size:13.5px}
+.driller a{color:var(--teal-dk);text-decoration:none;font-weight:600}
+.steps{counter-reset:step;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:step;padding:10px 0 10px 44px;position:relative;
+  border-bottom:1px dashed var(--line)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(step);position:absolute;left:0;top:10px;width:28px;height:28px;
+  border-radius:50%;background:var(--slate);color:#fff;font-weight:800;font-size:14px;
+  text-align:center;line-height:28px}
+.fine{font-size:12.5px;color:var(--muted)}
+.fine h3{font-size:13px;color:var(--ink);margin:18px 0 6px}
+.footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:26px}
+.footer .bn{font-weight:700;color:var(--ink)}
+@media print{
+  body{background:#fff}
+  .wrap{padding:0;max-width:none}
+  .hero{box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card{box-shadow:none;break-inside:avoid}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="kicker">I Need a Well</div>
+  <h1>0 Ellsworth Rd, East Windsor, CT 06016</h1>
+  <div class="addr">Know your water before you buy the land.</div>
+  <div class="meta"><span>Prepared for Sample Customer</span><span>2026-11-04</span><span>Order 0-ellsworth-rd-east-windsor</span></div>
+</div>
+
+<div class="card verdict good">
+  <div class="word">Good water outlook</div>
+  <p>All 4 nearby records report yields of 8–30 gallons per minute (depths 223–623 ft where recorded). That is a workable aquifer for a single-family home — but the record only covers wells filed online since 2021, so treat it as evidence, not a guarantee. The neighbors' wells also stand deep (typical standing reserve about 414 gal in the bore), so the reserve behind those yields is real, not just a strong test day.</p>
+  <div class="stats"><div class="stat"><div class="n">4</div><div class="l">nearby wells on record</div></div>
+<div class="stat"><div class="n">326.5 ft</div><div class="l">median depth</div></div>
+<div class="stat"><div class="n">22.5 gpm</div><div class="l">median yield</div></div>
+<div class="stat"><div class="n">223–623 ft</div><div class="l">local depth range</div></div></div>
+</div>
+
+<div class="card">
+  <h2>Nearby well evidence</h2>
+  <p class="sub">Public completion reports near this parcel &mdash; CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01)</p>
+  <div class="wellbar"><div class="top"><span class="a">184 Scantic Road East Windsor</span><span class="b">223 ft &middot; 15 gpm</span></div><div class="track"><div class="fill" style="width:35.8%"></div></div></div>
+<div class="wellbar"><div class="top"><span class="a">101 Stoughton Road East Windsor</span><span class="b">303 ft &middot; 30 gpm</span></div><div class="track"><div class="fill" style="width:48.6%"></div></div></div>
+<div class="wellbar"><div class="top"><span class="a">28 Rye St East Windsor</span><span class="b">350 ft &middot; 30 gpm</span></div><div class="track"><div class="fill" style="width:56.2%"></div></div></div>
+<div class="wellbar"><div class="top"><span class="a">149 Scantic Road East Windsor</span><span class="b">623 ft &middot; 8 gpm</span></div><div class="track"><div class="fill" style="width:100.0%"></div></div></div>
+<div class="scale"><span>0 ft</span><span>deepest nearby: 623 ft</span></div>
+  <p class="fine" style="margin-top:12px"><b>Reading this:</b> budget against the
+  geology, not the average. Wells were drilled by: CHOWANEC WELL DRILLING LLC, Connecticut Valley Artesian Well, Connecticut Valley Artesian Well Co.</p>
+</div>
+
+<div class="card">
+  <h2>What it will cost to plan for</h2>
+  <p class="sub">Planning band from the local depth range &mdash; your driller quotes are the real numbers</p>
+  
+<div class="scenarios"><div class="scenario"><div class="t">If the geology cooperates</div><div class="c">$5,575</div><div class="m">223 ft &times; about $25/ft &mdash; shallow end of the local range</div></div>
+<div class="scenario"><div class="t">Plan on</div><div class="c">$14,692</div><div class="m">326.5 ft &times; about $45/ft &mdash; middle of the local range</div></div>
+<div class="scenario hot"><div class="t">If it fights you</div><div class="c">$40,495+</div><div class="m">623 ft &times; about $65/ft &mdash; deep end of the local range, before the dry-hole downside</div></div></div>
+<p class="fine" style="margin-top:14px"><b>How we got these numbers:</b> the
+per-foot rates are planning points picked from published national cost guides,
+not quotes. Angi (updated September 18, 2026) puts residential well drilling
+at $25 to $65 per foot, and $50 to $75 per foot in rocky ground. CostHelper
+puts drilling with casing at $15 to $30 per foot, rising to $30 to $50 or more
+in difficult ground. The National Ground Water Association's Well Owners Guide
+reports drilling-only averages of about $24 per foot for a 4-inch well and
+about $30 per foot for a 6-inch well, with casing billed on top of that. We
+plan at $25, $45, and $65 per foot for drilling and casing. The pump, pressure tank,
+electrical work, and trenching are not in these numbers; drillers quote those
+separately. Your driller's written quote is the real number.</p>
+<p class="fine">The hole is the middle of the bill: add pump, pressure tank,
+electrical, and trenching (quoted separately), plus the well permit (set by
+your health district: $200 in the North Central District, which
+covers East Windsor, Enfield, Ellington, Suffield, Vernon, and Windsor Locks;
+$150 in Bloomfield; check your district's current fee schedule).
+<b>Dry-hole truth:</b> one risk no guide can price for your lot: you pay for
+the attempt. Drillers bill per foot whether or not the hole produces, so a
+failed hole at the depths common around here can run about $9,000 to $18,000
+at the plan-on rate, before you decide whether to deepen it, hydrofracture
+it, or drill again somewhere else. We carry a <b>+$10,000&ndash;$25,000
+contingency</b> for that. It is our planning allowance, built from the rates
+above, not a published figure. Your three driller quotes are the real
+numbers; this band is what you walk in with.</p>
+
+</div>
+
+<div class="card">
+  <h2>Water-quality flags</h2>
+  <p class="sub">Water Quality Portal (EPA/USGS) Result search, CSV &mdash; Counts are regional sample rows, not parcel predictions. Connecticut requires arsenic and uranium testing for newly constructed private and semipublic wells (CT DPH, effective Oct 1, 2022) — confirm the exact panel with a certified lab.</p>
+  <ul class="flags"><li>Water quality — the state panel covers it: Connecticut requires arsenic and uranium testing on every new well — the two contaminants that actually show up in CT bedrock — so the lab runs the state panel as routine. Radon is optional; ask the lab whether to add it, and get the panel price when you book.</li></ul>
+  <p class="fine" style="margin-top:12px"><b>Risk flags are not a prediction. Laboratory testing of the finished well is the final word.</b></p>
+</div>
+
+<div class="card">
+  <h2>Setback checklist</h2>
+  <p class="sub">Setbacks are the legal distance a well must sit from septic and water &mdash; CT rules; your engineer confirms each one for your lot</p>
+  <div class="setback"><span class="badge warn">to confirm</span><div><b>Well to septic system and its leaching field (where septic water drains into the soil), buried oil tank, or other pollution source</b> &mdash; 75 ft minimum<div class="fine">Well with a required withdrawal rate under 10 gpm — the band a single-family home sits in. Bands follow the well&#x27;s required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band. Source: CT Public Health Code Reg. 19-13-B51d(a)(2) Confidence: written in the state health code</div><div class="fine">We can&#x27;t measure your lot from public records — your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to surface water (high-water mark) / surface-water or foundation drain</b> &mdash; 25 ft minimum<div class="fine">Well with a required withdrawal rate under 10 gpm. Bands follow the well&#x27;s required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band. Source: CT Public Health Code Reg. 19-13-B51d(a)(3) Confidence: written in the state health code</div><div class="fine">We can&#x27;t measure your lot from public records — your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to tight-joint sewer (extra-heavy cast iron, leaded joints, or equal)</b> &mdash; 25 ft minimum<div class="fine">Tight-joint sewer only; well with a required withdrawal rate under 10 gpm. Bands follow the well&#x27;s required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band. Source: CT Public Health Code Reg. 19-13-B51d(a)(2) Confidence: written in the state health code</div><div class="fine">We can&#x27;t measure your lot from public records — your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow — the distance doubles</b> &mdash; 150 ft minimum<div class="fine">Applies when BOTH hold: soil percolation rate faster than 1.0 minute per inch, AND the bottom of the leaching system is less than 8 ft above ledge rock. For a single-family home the 75 ft distance becomes 150 ft. Only soil tests on the lot can settle whether this applies — it cannot be screened from public data. Source: CT DPH Technical Standards for Subsurface Sewage Disposal Systems, Table 1 Item A (applied to wells via Reg. 19-13-B102d) Confidence: written in the state health code</div><div class="fine">We can&#x27;t measure your lot from public records — your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to property boundary — district guidance: keep 25 ft &#x27;if possible&#x27; (guidance, not a state setback)</b> &mdash; 25 ft &mdash; district guidance ('if possible'), not a state minimum<div class="fine">NCDHD&#x27;s subdivision plan-review requirements say no well should be located closer than 25 ft to a property boundary &#x27;if possible&#x27;. It is published guidance in a plan-review document — present it as guidance the district will look for, never as a state setback, and note no B51d well-to-property-line distance exists. Source: NCDHD Subdivision Plan Review Requirements, item 5 (Rev. 06/30/26) Confidence: district guidance — not a state rule</div><div class="fine">We can&#x27;t measure your lot from public records — your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing.</div></div></div>
+  <p class="fine" style="margin-top:12px">State rules verified; North Central District Health Department (NCDHD) add-ons checked (Oct 2026) — the ones that apply are included below.</p>
+  <p class="fine">One rule can change this number: if the soil drains very fast (perc faster than 1 minute per inch) and ledge rock is shallow (leaching bottom less than 8 ft above it), the state doubles the well-to-septic distance — 150 ft for a typical home. That is only known after a perc test, which happens at permit time.</p>
+</div>
+
+<div class="card">
+  <h2>Who to call</h2>
+  <p class="sub">Drillers active near this parcel, ranked by proximity &mdash; call two or three for competing quotes</p>
+  <div class="drillers"><p class="fine">No driller shortlist for this area yet.</p></div>
+</div>
+
+<div class="card">
+  <h2>Your next steps</h2>
+  <ol class="steps">
+    <li><b>Decide with eyes open.</b> If the outlook above works for your budget including the contingency, this lot is drillable on paper.</li>
+    <li><b>Get three quotes.</b> Ask each driller: what depth would you permit for, what's your per-foot rate, and what happens &mdash; exactly &mdash; if the hole is dry or low-yield?</li>
+    <li><b>Plan the lab test now.</b> Connecticut requires arsenic and uranium testing for new wells &mdash; confirm the panel with a certified lab, and ask whether radon makes sense for your lot.</li>
+    <li><b>File with the health district.</b> Your driller signs the state permit as applicant; the health director countersigns before it is valid.</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>Methodology &amp; honesty section</h2>
+  <div class="fine">
+  <h3>Where every number came from</h3>
+  <p>Coordinates: nominatim (41.892, -72.570).
+  Well records: CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01) &mdash; online submissions only, so
+  older wells exist on paper at the health district that we cannot see.
+  Water quality: Water Quality Portal (EPA/USGS) Result search, CSV &mdash; regional sample rows, not a
+  parcel prediction. Setbacks: CT rules from a single rules table keyed by
+  town and district (PHC 19-13-B51, CT DPH Technical Standards, and district
+  publications), each rule carrying its citation and confidence label &mdash;
+  the health district has the
+  final word on your lot.</p>
+  <h3>What this report is not</h3>
+  <p>Screening-level report from public data. Not a substitute for an engineered site plan, wetlands delineation, soil/perc testing, or laboratory testing of the finished well. Verify all rules, fees, and parcel details against current authoritative documents before acting. Not legal advice. Not an
+  engineering stamp. Nobody was contacted on your behalf for this report.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="bn">I Need a Well</div>
+  <div>I Need a Well</div>
+  <div style="margin-top:6px">Coverage: Connecticut &middot; Generated 2026-11-04</div>
+</div>
+
+</div>
+</body>
+</html>

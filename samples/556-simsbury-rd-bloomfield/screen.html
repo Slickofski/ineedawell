@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Well Snapshot &mdash; 556 Simsbury Rd, Bloomfield, CT 06002</title>
+<style>
+:root{
+  --ink:#16283a; --muted:#5b6b7f; --line:#e2e8f0;
+  --teal:#0f766e; --teal-dk:#115e59; --teal-bg:#ecfdf5;
+  --amber:#b45309; --amber-bg:#fffbeb;
+  --slate:#0f2233; --card:#ffffff; --page:#f1f5f9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 60px}
+.hero{background:linear-gradient(135deg,#0f2233 0%,#16455b 60%,#0f766e 100%);
+  color:#fff;border-radius:18px;padding:34px 32px;margin-bottom:22px;
+  box-shadow:0 12px 32px rgba(15,34,51,.25)}
+.hero .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.75;margin-bottom:8px}
+.hero h1{margin:0 0 6px;font-size:30px;line-height:1.2;letter-spacing:-.01em}
+.hero .addr{font-size:16px;opacity:.92}
+.hero .meta{margin-top:16px;font-size:13px;opacity:.75;display:flex;gap:18px;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:24px 26px;margin-bottom:18px;box-shadow:0 2px 10px rgba(15,34,51,.05)}
+.card h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+.card .sub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+.verdict{border-left:6px solid var(--teal);background:var(--teal-bg)}
+.verdict.caution{border-left-color:var(--amber);background:var(--amber-bg)}
+.verdict .word{font-size:24px;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}
+.verdict p{margin:6px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;margin-top:16px}
+.stat{background:rgba(255,255,255,.75);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px}
+.stat .n{font-size:22px;font-weight:800;color:var(--teal-dk)}
+.verdict.caution .stat .n{color:var(--amber)}
+.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.wellbar{margin:10px 0}
+.wellbar .top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:4px}
+.wellbar .top .a{font-weight:600}
+.wellbar .top .b{color:var(--muted);white-space:nowrap;margin-left:12px}
+.track{height:14px;background:#eef2f7;border-radius:7px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,#14b8a6,#0f766e);border-radius:7px}
+.scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px}
+.scenarios{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.scenario{border:1px solid var(--line);border-radius:12px;padding:16px}
+.scenario .t{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--muted);margin-bottom:6px}
+.scenario .c{font-size:26px;font-weight:800;letter-spacing:-.01em}
+.scenario .m{font-size:12.5px;color:var(--muted);margin-top:6px}
+.scenario.hot{border-color:#f59e0b;background:var(--amber-bg)}
+ul.flags{margin:0;padding:0;list-style:none}
+ul.flags li{padding:10px 0 10px 30px;position:relative;border-bottom:1px dashed var(--line)}
+ul.flags li:last-child{border-bottom:none}
+ul.flags li::before{content:"!";position:absolute;left:0;top:10px;width:20px;height:20px;
+  border-radius:50%;background:var(--amber-bg);color:var(--amber);font-weight:800;
+  font-size:13px;text-align:center;line-height:20px;border:1px solid #fcd34d}
+.flag{padding:12px 0;border-bottom:1px dashed var(--line)}
+.flag:last-child{border-bottom:none}
+.flag .ftitle{font-weight:800;font-size:15.5px;margin-bottom:3px}
+.flag .fsummary{font-size:14px;color:var(--ink)}
+.flag details.fdetail{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.flag details.fdetail summary{cursor:pointer;font-weight:600;color:var(--teal-dk)}
+.setback{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.setback:last-child{border-bottom:none}
+.badge{flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:20px;padding:3px 10px;height:fit-content;margin-top:2px}
+.badge.ok{background:var(--teal-bg);color:var(--teal-dk);border:1px solid #99f6e4}
+.badge.warn{background:var(--amber-bg);color:var(--amber);border:1px solid #fcd34d}
+.drillers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.driller{border:1px solid var(--line);border-radius:12px;padding:16px}
+.driller .co{font-weight:800;font-size:15.5px;margin-bottom:2px}
+.driller .tw{color:var(--muted);font-size:13px;margin-bottom:10px}
+.driller .ct{font-size:13.5px}
+.driller a{color:var(--teal-dk);text-decoration:none;font-weight:600}
+.steps{counter-reset:step;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:step;padding:10px 0 10px 44px;position:relative;
+  border-bottom:1px dashed var(--line)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(step);position:absolute;left:0;top:10px;width:28px;height:28px;
+  border-radius:50%;background:var(--slate);color:#fff;font-weight:800;font-size:14px;
+  text-align:center;line-height:28px}
+.fine{font-size:12.5px;color:var(--muted)}
+.fine h3{font-size:13px;color:var(--ink);margin:18px 0 6px}
+.footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:26px}
+.footer .bn{font-weight:700;color:var(--ink)}
+@media print{
+  body{background:#fff}
+  .wrap{padding:0;max-width:none}
+  .hero{box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card{box-shadow:none;break-inside:avoid}
+}
+
+
+.upsell{border:2px solid var(--teal);background:#f0fdfa}
+.upsell .word{font-size:19px;font-weight:800;margin:0 0 8px}
+.hero-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-link{display:inline-block;padding:11px 20px;border-radius:999px;
+  border:2px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;
+  font-weight:700;font-size:.92rem;background:rgba(255,255,255,.08);
+  cursor:pointer;font-family:inherit}
+.hero-link:hover{background:rgba(255,255,255,.16)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="kicker">Free well snapshot &middot; <a href="https://ineedawell.com" style="color:#fff">I Need a Well</a></div>
+  <h1>556 Simsbury Rd, Bloomfield, CT 06002</h1>
+  <div class="addr">Should you worry about the water here? The 60-second answer, from public records.</div>
+  <div class="meta"><span>Prepared for Sample Customer</span><span>2026-11-04</span></div>
+  <div class="hero-actions">
+    <a class="hero-link" href="https://maps.apple.com/?q=556+Simsbury+Rd%2C+Bloomfield%2C+CT+06002">View in Maps</a>
+    <button class="hero-link" id="share-btn" hidden>Share this snapshot</button>
+  </div>
+</div>
+<script>
+(function() {
+  var b = document.getElementById('share-btn');
+  if (navigator.share && location.protocol.indexOf('http') === 0 && b) {
+    b.hidden = false;
+    b.addEventListener('click', function () {
+      navigator.share({
+        title: document.title,
+        text: document.title,
+        url: location.href
+      }).catch(function () {});
+    });
+  }
+})();
+</script>
+
+<div class="card verdict caution">
+  <div class="word">Zero-yield records — ask drillers and the health district why</div>
+  <p>3 of 3 nearby record(s) report a yield; 0 have no yield on file. 1 of the yield-bearing record(s) recorded zero yield — a drilled well that filed no production. That is a red flag to investigate with drillers and the health district, not a detail. The record only covers wells filed online since 2021, so treat it as evidence, not a guarantee.</p>
+  <div class="stats"><div class="stat"><div class="n">3</div><div class="l">nearby wells on record</div></div>
+<div class="stat"><div class="n">523 ft</div><div class="l">median depth</div></div>
+<div class="stat"><div class="n">2.5 gpm</div><div class="l">median yield</div></div></div>
+</div>
+
+<div class="card">
+  <h2>What neighbors hit</h2>
+  <p class="sub">Public well completion reports near this parcel</p>
+  <div class="wellbar"><div class="top"><span class="a">40R JUNIPER RD BLOOMFIELD</span><span class="b">343 ft &middot; 30 gpm</span></div><div class="track"><div class="fill" style="width:55.1%"></div></div></div>
+<div class="wellbar"><div class="top"><span class="a">200 Hopmeadow St Simsbury</span><span class="b">523 ft &middot; 2.5 gpm</span></div><div class="track"><div class="fill" style="width:83.9%"></div></div></div>
+<div class="wellbar"><div class="top"><span class="a">200 Hopmeadow Simsbury</span><span class="b">623 ft &middot; 0 gpm</span></div><div class="track"><div class="fill" style="width:100.0%"></div></div></div>
+<div class="scale"><span>0 ft</span><span>deepest nearby: 623 ft</span></div>
+  <p style="margin-top:10px"><b>Strength check:</b> 2 neighbor tests on file record resting levels of 50–60 ft and levels during the test of 343–523 ft; methods: compressed air; test durations: 5–5 hours. Borehole storage: wells here also stand deep — the typical neighbor well holds about 556 gallons of water standing in the bore itself (about 378 ft of water column), a reserve that can carry a house through showers and laundry while the well refills. Each filing records a single endpoint level, so sustained yield is unestablished from these records.</p>
+</div>
+
+<div class="card">
+  <h2>What to budget</h2>
+  <p class="sub">Planning band from the local depth range &mdash; driller quotes are the real numbers</p>
+  
+<div class="scenarios"><div class="scenario"><div class="t">If the geology cooperates</div><div class="c">$8,575</div><div class="m">343 ft &times; about $25/ft &mdash; shallow end of the local range</div></div>
+<div class="scenario"><div class="t">Plan on</div><div class="c">$23,535</div><div class="m">523 ft &times; about $45/ft &mdash; middle of the local range</div></div>
+<div class="scenario hot"><div class="t">If it fights you</div><div class="c">$40,495+</div><div class="m">623 ft &times; about $65/ft &mdash; deep end of the local range, before the dry-hole downside</div></div></div>
+<p class="fine" style="margin-top:14px"><b>How we got these numbers:</b> the
+per-foot rates are planning points picked from published national cost guides,
+not quotes. Angi (updated September 18, 2026) puts residential well drilling
+at $25 to $65 per foot, and $50 to $75 per foot in rocky ground. CostHelper
+puts drilling with casing at $15 to $30 per foot, rising to $30 to $50 or more
+in difficult ground. The National Ground Water Association's Well Owners Guide
+reports drilling-only averages of about $24 per foot for a 4-inch well and
+about $30 per foot for a 6-inch well, with casing billed on top of that. We
+plan at $25, $45, and $65 per foot for drilling and casing. The pump, pressure tank,
+electrical work, and trenching are not in these numbers; drillers quote those
+separately. Your driller's written quote is the real number.</p>
+<p class="fine">The hole is the middle of the bill: add pump, pressure tank,
+electrical, and trenching (quoted separately), plus the well permit (set by
+your health district: $200 in the North Central District, which
+covers East Windsor, Enfield, Ellington, Suffield, Vernon, and Windsor Locks;
+$150 in Bloomfield; check your district's current fee schedule).
+<b>Dry-hole truth:</b> one risk no guide can price for your lot: you pay for
+the attempt. Drillers bill per foot whether or not the hole produces, so a
+failed hole at the depths common around here can run about $9,000 to $18,000
+at the plan-on rate, before you decide whether to deepen it, hydrofracture
+it, or drill again somewhere else. We carry a <b>+$10,000&ndash;$25,000
+contingency</b> for that. It is our planning allowance, built from the rates
+above, not a published figure. Your three driller quotes are the real
+numbers; this band is what you walk in with.</p>
+
+</div>
+
+<div class="card">
+  <h2>Water: what to test</h2>
+  <p class="sub">Required on every new CT well &mdash; arsenic and uranium. Radon is your call.</p>
+  <div class="flag"><div class="ftitle">Water quality — the state panel covers it</div><div class="fsummary">Connecticut requires arsenic and uranium testing on every new well — the two contaminants that actually show up in CT bedrock — so the lab runs the state panel as routine. Radon is optional; ask the lab whether to add it, and get the panel price when you book.</div><details class="fdetail"><summary>Where this comes from</summary>Water Quality Portal: 842 uninterpreted regional arsenic sample rows within 25 miles — not a parcel finding. CT DPH/USGS private-well study: 3.9% of sampled CT wells exceeded the arsenic MCL. Water Quality Portal: 2969 uninterpreted regional uranium sample rows within 25 miles — not a parcel finding. CT DPH/USGS private-well study: 4.7% exceeded the uranium MCL. No queryable public result dataset for radon in water found.</details></div>
+</div>
+
+<div class="card">
+  <h2>Setback top-lines</h2>
+  <p class="sub">Setbacks are the legal distance a well must sit from septic and water &mdash; CT rules; your engineer confirms each one for your lot</p>
+  <div class="setback"><span class="badge warn">to confirm</span><div><b>Well to septic system and its leaching field (where septic water drains into the soil), buried oil tank, or other pollution source</b> &mdash; 75 ft minimum<div class="fine">Well with a required withdrawal rate under 10 gpm — the band a single-family home sits in. Bands follow the well&#x27;s required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band. Source: CT Public Health Code Reg. 19-13-B51d(a)(2) Confidence: written in the state health code</div><div class="fine">Your engineer confirms this distance on the site plan before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to surface water (high-water mark) / surface-water or foundation drain</b> &mdash; 25 ft minimum<div class="fine">Well with a required withdrawal rate under 10 gpm. Bands follow the well&#x27;s required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band. Source: CT Public Health Code Reg. 19-13-B51d(a)(3) Confidence: written in the state health code</div><div class="fine">Your engineer confirms this distance on the site plan before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to tight-joint sewer (extra-heavy cast iron, leaded joints, or equal)</b> &mdash; 25 ft minimum<div class="fine">Tight-joint sewer only; well with a required withdrawal rate under 10 gpm. Bands follow the well&#x27;s required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band. Source: CT Public Health Code Reg. 19-13-B51d(a)(2) Confidence: written in the state health code</div><div class="fine">Your engineer confirms this distance on the site plan before filing.</div></div></div>
+<div class="setback"><span class="badge warn">to confirm</span><div><b>Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow — the distance doubles</b> &mdash; 150 ft minimum<div class="fine">Applies when BOTH hold: soil percolation rate faster than 1.0 minute per inch, AND the bottom of the leaching system is less than 8 ft above ledge rock. For a single-family home the 75 ft distance becomes 150 ft. Only soil tests on the lot can settle whether this applies — it cannot be screened from public data. Source: CT DPH Technical Standards for Subsurface Sewage Disposal Systems, Table 1 Item A (applied to wells via Reg. 19-13-B102d) Confidence: written in the state health code</div><div class="fine">Your engineer confirms this distance on the site plan before filing.</div></div></div>
+  <p class="fine" style="margin-top:10px">One rule can change this number: if the soil drains very fast (perc faster than 1 minute per inch) and ledge rock is shallow (leaching bottom less than 8 ft above it), the state doubles the well-to-septic distance — 150 ft for a typical home. That is only known after a perc test, which happens at permit time.</p>
+</div>
+
+<div class="card">
+  <h2>The paperwork, step by step</h2>
+  <p class="sub">Permits, order of operations, and who does what &mdash; the part nobody explains</p>
+  <p class="fine">Well permits for this town run through the West Hartford-Bloomfield Health District.
+  Fees below are planning context, not quotes &mdash; verify with the district before acting.</p>
+  <ol class="steps"><li><b>Before you commit: get driller quotes &mdash; You.</b> Get 2–3 quotes from Connecticut-licensed well drillers. Ask each one: what depth would you permit for this lot, and what exactly do I pay if the hole comes up dry?</li>
+<li><b>Verify the driller&#x27;s license &mdash; You.</b> Well drillers must hold a Connecticut Department of Consumer Protection license. Check it before you sign anything — an unlicensed driller can&#x27;t pull your permit.</li>
+<li><b>File the well permit &mdash; Your driller files it; you pay the fee.</b> Your driller signs the state permit application as applicant and files it with the West Hartford-Bloomfield Health District. The fee is set by the district, not the state: it is $200 in the North Central District and $150 in Bloomfield&#x27;s district, to give the local range. Confirm the current fee with the district before the driller files. Nothing gets drilled before this is approved.</li>
+<li><b>Pass the site and setback review &mdash; The health district.</b> The district confirms the proposed well spot meets CT setbacks (Public Health Code §19-13-B51d): 75 ft from septic and other pollution sources for a typical home well — the band follows the home’s required withdrawal rate (its water demand), not the well’s tested yield; the 150 ft band is for larger or shared supplies that must deliver 10–50 gpm, and 200 ft above 50 gpm. Plus 25 ft from surface water and drains (50 ft in the higher bands). One rule can change this number: if the soil drains very fast (perc faster than 1 minute per inch) and ledge rock is shallow (leaching bottom less than 8 ft above it), the state doubles the well-to-septic distance — 150 ft for a typical home. That is only known after a perc test, which happens at permit time. This is the step that kills bad lot layouts — better to learn it now than after you own the lot.</li>
+<li><b>Drill the well &mdash; Your driller.</b> You pay for the attempt whether the hole comes up wet or dry — that&#x27;s why the cost band in this snapshot carries the dry-hole contingency. Get the driller&#x27;s dry-hole policy in writing.</li>
+<li><b>Lab-test the water &mdash; You, through a certified lab.</b> Every new CT well must be lab-tested on the state-required baseline panel — 15 tests, including arsenic and uranium (CGS 19a-37(c)(2), since October 1, 2022). If the well serves an existing structure, a first-draw lead sample from the plumbing is also required. Ask the lab whether radon testing makes sense for your lot too — the water section above flags what your area&#x27;s geology suggests.</li>
+<li><b>Get the health authority&#x27;s compliance determination &mdash; Your local health authority.</b> The lab results go to your local health authority, which determines whether they comply with the state maximum contaminant levels. The well may not be used for domestic purposes until the health authority makes that determination (CGS 19a-37(c)(2)).</li>
+<li><b>Keep your paperwork &mdash; You.</b> Get a copy of the well completion report your driller files with the state, and keep it with the deed. Future buyers — and future you — will want it.</li></ol>
+</div>
+
+<div class="card">
+  <h2>What happens next</h2>
+  <ol class="steps"><li><b>Read the verdict above.</b> That is the 60-second answer. Everything below is the evidence.</li>
+<li><b>Put the cost band in your offer math.</b> Include the dry-hole contingency before you fall in love with the lot.</li>
+<li><b>Get 2–3 driller quotes before you commit.</b> Ask each: what depth would you permit for here, and what exactly happens if the hole is dry?</li>
+<li><b>After offer accepted: health district.</b> Site review, soil/perc tests, and permits run through the local health district — your driller signs the state permit as applicant.</li>
+<li><b>Drill, then lab-test the water.</b> Connecticut requires arsenic and uranium testing for new wells — confirm the panel with a certified lab, and ask whether radon makes sense for your lot.</li></ol>
+</div>
+
+
+
+<div class="card">
+  <h2>Where this came from</h2>
+  <div class="fine">
+  <p>Well records: CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01) &mdash; online filings only
+  (since 2021), so older wells exist on paper that we cannot see. Water quality:
+  Water Quality Portal (EPA/USGS) Result search, CSV &mdash; regional samples, not a parcel prediction.
+  Risk flags are not a prediction. Laboratory testing of the finished well is the final word.</p>
+  <p>Screening-level report from public data. Not a substitute for an engineered site plan, wetlands delineation, soil/perc testing, or laboratory testing of the finished well. Verify all rules, fees, and parcel details against current authoritative documents before acting.</p>
+  <p>This is a free pilot. Nobody was contacted on your behalf.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="bn">I Need a Well</div>
+  <div class="fine">Free pilot &middot; Connecticut &middot; Generated 2026-11-04</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# I Need a Well — MCP server (v1)
+# Direct dependencies, pinned to the exact versions this build was
+# tested with on 2026-09-30 (fastmcp 4.0.10 pulls the official MCP
+# Python SDK 2.2.0). Transitive dependencies resolve via pip.
+fastmcp==4.0.10
+mcp==2.2.0

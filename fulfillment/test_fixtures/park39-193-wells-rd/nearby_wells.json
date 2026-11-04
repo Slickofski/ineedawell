@@ -1,0 +1,110 @@
+{
+  "radius_m": 3000,
+  "source": "CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01)",
+  "total_water_supply_wells": 5,
+  "wells_with_depth_yield": 5,
+  "depth_count": 5,
+  "yield_count": 5,
+  "paired_count": 5,
+  "zero_yield_count": 0,
+  "missing_yield_count": 0,
+  "missing_depth_count": 0,
+  "records_in_radius": 13,
+  "records_with_unusable_dates": 0,
+  "abandonment_records_in_radius": 3,
+  "town_water_supply_count": 9,
+  "town_abandonment_count": 0,
+  "drawdown_analysis": {
+    "status": "internal_only \u2014 captured 2026-10-20 at Marcin's direction; not rendered in the screen, packet, or report, and never feeds the verdict",
+    "method_note": "water_during_test is the driller-filed water level during the yield test. For compressed-air and bailed tests (the large majority) the well is typically blown/bailed to the bottom, so drawdown approximates depth below static, not a controlled pump-test drawdown. Specific capacity from these records is method- and depth-contaminated \u2014 never quote it as a precise figure or use it to reassure or alarm.",
+    "specific_capacity_gpm_per_ft": {
+      "n": 5,
+      "min": 0.001,
+      "median": 0.014,
+      "max": 0.097
+    }
+  },
+  "depth_ft": {
+    "min": 350.0,
+    "max": 663.0,
+    "median": 425.0
+  },
+  "yield_gpm": {
+    "min": 0.5,
+    "max": 40.0,
+    "median": 8.0
+  },
+  "town": "East Windsor",
+  "stats_town": "East Windsor",
+  "town_stats_fallback": false,
+  "town_depth_ft": {
+    "p90": 463.0,
+    "median": 245.0,
+    "n": 9,
+    "water_supply_n": 9,
+    "abandonment_n": 0
+  },
+  "planning_note": "Plan against the geology, not the average: budget for the deep end of the local depth range and price the dry/low-yield downside (+$10k-$25k contingency) before committing.",
+  "wells": [
+    {
+      "address": "28 Rye St East Windsor",
+      "city": "East Windsor",
+      "depth_ft": 350.0,
+      "yield_gpm": 30.0,
+      "static_level_ft": 20.0,
+      "pumping_level_ft": 345.0,
+      "yield_test_type": "Compressed Air",
+      "yield_test_hours": 4.0,
+      "company": "CHOWANEC WELL DRILLING LLC",
+      "date": "2024-05-13"
+    },
+    {
+      "address": "42 Borrup St East Windsor",
+      "city": "East Windsor",
+      "depth_ft": 423.0,
+      "yield_gpm": 40.0,
+      "static_level_ft": 10.0,
+      "pumping_level_ft": 423.0,
+      "yield_test_type": "Compressed Air",
+      "yield_test_hours": 5.0,
+      "company": "Connecticut Valley Artesian Well",
+      "date": "2024-10-25"
+    },
+    {
+      "address": "32 Rolocut Rd Broadbrook",
+      "city": "Broadbrook",
+      "depth_ft": 425.0,
+      "yield_gpm": 0.5,
+      "static_level_ft": 20.0,
+      "pumping_level_ft": 425.0,
+      "yield_test_type": "Bailed",
+      "yield_test_hours": 4.0,
+      "company": "Dufford Well Drilling",
+      "date": "2021-01-20"
+    },
+    {
+      "address": "149 Scantic Road East Windsor",
+      "city": "East Windsor",
+      "depth_ft": 623.0,
+      "yield_gpm": 8.0,
+      "static_level_ft": 70.0,
+      "pumping_level_ft": 623.0,
+      "yield_test_type": "Compressed Air",
+      "yield_test_hours": 5.0,
+      "company": "Connecticut Valley Artesian Well Co",
+      "date": "2023-06-05"
+    },
+    {
+      "address": "266 North Rd Broadbrook",
+      "city": "Broadbrook",
+      "depth_ft": 663.0,
+      "yield_gpm": 2.0,
+      "static_level_ft": 60.0,
+      "pumping_level_ft": 663.0,
+      "yield_test_type": "Compressed Air",
+      "yield_test_hours": 5.0,
+      "company": "Connecticut Valley Artesian Well Company",
+      "date": "2024-09-25"
+    }
+  ]
+}
