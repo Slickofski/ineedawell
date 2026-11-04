@@ -129,7 +129,7 @@ class TestR01YieldWithoutDepthStats(unittest.TestCase):
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "good")
         self.assertEqual(vword, "Good water outlook")
-        self.assertIn("12\u201320", vnote)
+        self.assertIn("12 to 20", vnote)
         self.assertNotIn("None", vnote)
         self.assertNotIn("depths", vnote)
 
@@ -139,7 +139,7 @@ class TestR01YieldWithoutDepthStats(unittest.TestCase):
         vcls, vword, vnote = report._verdict(res, parcel_acres=10)
         self.assertEqual(vcls, "good")
         self.assertIn("approvals decide", vword)
-        self.assertIn("12\u201320", vnote)
+        self.assertIn("12 to 20", vnote)
         self.assertNotIn("None", vnote)
         self.assertNotIn("depths", vnote)
 
@@ -153,7 +153,7 @@ class TestR01YieldWithoutDepthStats(unittest.TestCase):
         for kw in ({}, {"parcel_acres": 10}):
             vcls, vword, vnote = report._verdict(wells, **kw)
             self.assertEqual(vcls, "good")
-            self.assertIn("12\u201320", vnote)
+            self.assertIn("12 to 20", vnote)
             self.assertNotIn("None", vnote)
             self.assertNotIn("depths", vnote)
 
@@ -198,7 +198,7 @@ class TestBoreholeStorageVerdictNotes(unittest.TestCase):
                     (95, 25, 80, 92)])
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "caution")
-        self.assertEqual(vword, "Strong flow, thin reserve \u2014 ask a driller before you commit")
+        self.assertEqual(vword, "Strong flow, thin reserve: ask a driller before you commit")
         self.assertIn("typical standing reserve is only about 22 gal",
                       vnote)
         self.assertIn("can outrun the reserve even at these yields",
@@ -232,7 +232,7 @@ class TestBoreholeStorageVerdictNotes(unittest.TestCase):
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "good")
         self.assertEqual(vword,
-                         "Workable for a house \u2014 low flow, deep reserve")
+                         "Workable for a house: low flow, deep reserve")
         self.assertIn("about 647 gallons", vnote)
         self.assertIn("while the well refills", vnote)
         self.assertIn("driller should confirm it on site", vnote)
@@ -269,7 +269,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
                     (95, 25, 80, 92)])
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "caution")
-        self.assertEqual(vword, "Strong flow, thin reserve \u2014 ask a driller before you commit")
+        self.assertEqual(vword, "Strong flow, thin reserve: ask a driller before you commit")
         self.assertIn("about 22 gal", vnote)
         self.assertIn("outrun the reserve", vnote)
 
@@ -293,7 +293,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "good")
         self.assertEqual(vword,
-                         "Workable for a house \u2014 low flow, deep reserve")
+                         "Workable for a house: low flow, deep reserve")
         # Honesty load: the reserve covers peaks, it does not raise
         # production; sustained yield stays unestablished; a driller
         # confirms on site.
@@ -311,7 +311,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
         # buyer words now — exact-string assertion, as the
         # single-family lift tests use.
         self.assertEqual(vword,
-                         "Workable water, deep reserve \u2014 approvals decide this tract")
+                         "Workable water, deep reserve: approvals decide this tract")
         self.assertIn("sustained yield is unestablished", vnote)
 
     def test_lift_refused_median_yield_below_2(self):
@@ -321,7 +321,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
                     (480, 2, 70, 310)])
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "caution")
-        self.assertEqual(vword, "Water on record, amount unproven \u2014 get driller opinions before you commit")
+        self.assertEqual(vword, "Water on record, amount unproven: get driller opinions before you commit")
 
     def test_lift_refused_storage_below_300(self):
         # Median yield 3 gpm clears the floor, but columns of 150 ft
@@ -330,7 +330,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
                     (280, 4, 130, 230)])
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "caution")
-        self.assertEqual(vword, "Water on record, amount unproven \u2014 get driller opinions before you commit")
+        self.assertEqual(vword, "Water on record, amount unproven: get driller opinions before you commit")
 
     def test_cap_refused_below_half_known_share(self):
         # 4 wells, strong yields, but only 1 of 4 carries a resting
@@ -352,7 +352,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
                     (480, 4, None, None), (510, 3, None, None)])
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "caution")
-        self.assertEqual(vword, "Water on record, amount unproven \u2014 get driller opinions before you commit")
+        self.assertEqual(vword, "Water on record, amount unproven: get driller opinions before you commit")
 
     def test_cap_fires_at_exactly_half_known_share(self):
         # 2 of 4 wells carry sane (thin) pairs: share = half, which
@@ -361,7 +361,7 @@ class TestBoreholeStorageRegate(unittest.TestCase):
                     (95, 25, None, None), (105, 18, None, None)])
         vcls, vword, vnote = report._verdict(res)
         self.assertEqual(vcls, "caution")
-        self.assertEqual(vword, "Strong flow, thin reserve \u2014 ask a driller before you commit")
+        self.assertEqual(vword, "Strong flow, thin reserve: ask a driller before you commit")
 
     def test_zero_yield_deep_storage_never_lifted(self):
         # A recorded zero is a red flag storage cannot wash out: deep

@@ -13,6 +13,7 @@ from urllib.parse import quote_plus
 
 from pipeline import report as R
 from pipeline import flags as FLAGS
+from pipeline import water_quality as WQ
 from pipeline import permit_roadmap as PR
 from pipeline import rules as RULES
 from pipeline import nearby_wells as NW
@@ -40,13 +41,13 @@ def _storage_sentence(wells) -> str | None:
     med = st["median_storage_gal"]
     col = st["median_column_ft"]
     if st["thin"]:
-        return (f"Borehole storage: these wells stand shallow "
-                f"\u2014 the typical neighbor well holds only about "
+        return (f"Borehole storage: these wells stand shallow"
+                f": the typical neighbor well holds only about "
                 f"{med:g} gallons standing in the bore itself, so a "
                 f"long heavy draw can outrun the reserve even when "
                 f"the recorded yield looks strong.")
-    return (f"Borehole storage: wells here also stand deep "
-            f"\u2014 the typical neighbor well holds about {med:g} "
+    return (f"Borehole storage: wells here also stand deep"
+            f": the typical neighbor well holds about {med:g} "
             f"gallons of water standing in the bore itself (about "
             f"{col:g} ft of water column), a reserve that can carry "
             f"a house through showers and laundry while the well "
@@ -107,12 +108,12 @@ def _strength_note(wells) -> str | None:
                                  or "method not recorded").lower())
             for w in trio}))
         hours = s["hours"]
-        dur = (f"{min(hours):g}\u2013{max(hours):g} hours"
+        dur = (f"{min(hours):g} to {max(hours):g} hours"
                if hours else "durations not recorded")
         parts.append(
             f"{len(trio)} neighbor tests on file record resting levels "
-            f"of {min(statics):g}\u2013{max(statics):g} ft and levels "
-            f"during the test of {min(pumpings):g}\u2013{max(pumpings):g} "
+            f"of {min(statics):g} to {max(statics):g} ft and levels "
+            f"during the test of {min(pumpings):g} to {max(pumpings):g} "
             f"ft; methods: {methods}; test durations: {dur}.")
     if invalid:
         parts.append(
@@ -155,7 +156,7 @@ def _setback_mini(setbacks):
     for it in setbacks.get("items", []):
         rows.append(
             f'<div class="setback"><span class="badge warn">to confirm</span>'
-            f'<div><b>{R.esc(it.get("rule"))}</b> &mdash; {R.setback_number_phrase(it)}'
+            f'<div><b>{R.esc(it.get("rule"))}</b>: {R.setback_number_phrase(it)}'
             f'<div class="fine">{R.setback_detail(it)}</div>'
             f'<div class="fine">Your engineer confirms this distance on the site plan before filing.</div></div></div>'
         )
@@ -172,19 +173,19 @@ def _dossier_card(inbox) -> str:
   well evidence, a ranked driller shortlist for this parcel, the full setback
   workup, and a print-ready summary for your file.</p>
   <p>If you would pay $39 for that on your next lot, just hit reply and type <b>YES</b>{
-    (f' &mdash; or email <a href="mailto:{R.esc(inbox)}?subject=YES%20for%20the%20%2439%20report">{R.esc(inbox)}</a>'
+    (f', or email <a href="mailto:{R.esc(inbox)}?subject=YES%20for%20the%20%2439%20report">{R.esc(inbox)}</a>'
      if inbox and not inbox.startswith("YOUR") else "")}.
   It costs you nothing to say so, and it decides what gets built next.</p>
-  <p>Reply or not &mdash; thanks for reading either way. That&rsquo;s what keeps this free.</p>
+  <p>Reply or not: thanks for reading either way. That\'s what keeps this free.</p>
 </div>"""
 
 
 TIMELINE = [
     ("Read the verdict above.", "That is the 60-second answer. Everything below is the evidence."),
     ("Put the cost band in your offer math.", "Include the dry-hole contingency before you fall in love with the lot."),
-    ("Get 2\u20133 driller quotes before you commit.", "Ask each: what depth would you permit for here, and what exactly happens if the hole is dry?"),
-    ("After offer accepted: health district.", "Site review, soil/perc tests, and permits run through the local health district — your driller signs the state permit as applicant."),
-    ("Drill, then lab-test the water.", "Connecticut requires arsenic and uranium testing for new wells — confirm the panel with a certified lab, and ask whether radon makes sense for your lot."),
+    ("Get 2 to 3 driller quotes before you commit.", "Ask each: what depth would you permit for here, and what exactly happens if the hole is dry?"),
+    ("After offer accepted: health district.", "Site review, soil/perc tests, and permits run through the local health district: your driller signs the state permit as applicant."),
+    ("Drill, then lab-test the water.", "Connecticut requires arsenic and uranium testing for new wells: confirm the panel with a certified lab, and ask whether radon makes sense for your lot."),
 ]
 
 
@@ -206,7 +207,8 @@ def build_screen(order, geo, wells, wq, setbacks, order_dir) -> str:
                   if wells.get("pulled_at") else "")
     def _flag_card(f: dict) -> str:
         if isinstance(f, str):  # legacy string flags
-            return f'<li>{R.esc(f)}</li>'
+            return f'<li>{R.esc(WQ.format_flag(f))}</li>'
+        f = WQ.clean_flag(f)
         return (
             '<div class="flag">'
             f'<div class="ftitle">{R.esc(f.get("title", ""))}</div>'
@@ -220,7 +222,7 @@ def build_screen(order, geo, wells, wq, setbacks, order_dir) -> str:
         f"<li><b>{R.esc(t)}</b> {R.esc(s)}</li>" for t, s in TIMELINE
     )
     permit_steps = "\n".join(
-        f"<li><b>{R.esc(s['step'])} &mdash; {R.esc(s['who'])}.</b> "
+        f"<li><b>{R.esc(s['step'])} ({R.esc(s['who'])}).</b> "
         f"{R.esc(s['detail'])}</li>"
         for s in PR.roadmap(wells.get("town"))
     )
@@ -243,7 +245,7 @@ def build_screen(order, geo, wells, wq, setbacks, order_dir) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Well Snapshot &mdash; {R.esc(order["property_address"])}</title>
+<title>Free Well Snapshot: {R.esc(order["property_address"])}</title>
 <style>{css}
 .upsell{{border:2px solid var(--teal);background:#f0fdfa}}
 .upsell .word{{font-size:19px;font-weight:800;margin:0 0 8px}}
@@ -299,28 +301,28 @@ def build_screen(order, geo, wells, wq, setbacks, order_dir) -> str:
 
 <div class="card">
   <h2>What to budget</h2>
-  <p class="sub">Planning band from the local depth range &mdash; driller quotes are the real numbers</p>
+  <p class="sub">Planning band from the local depth range: driller quotes are the real numbers</p>
   {R._cost_section(wells)}
 </div>
 
 <div class="card">
   <h2>Water: what to test</h2>
-  <p class="sub">Required on every new CT well &mdash; arsenic and uranium. Radon is your call.</p>
+  <p class="sub">Required on every new CT well: arsenic and uranium. Radon is your call.</p>
   {wq_flags}
 </div>
 
 <div class="card">
   <h2>Setback top-lines</h2>
-  <p class="sub">Setbacks are the legal distance a well must sit from septic and water &mdash; CT rules; your engineer confirms each one for your lot</p>
+  <p class="sub">Setbacks are the legal distance a well must sit from septic and water: CT rules; your engineer confirms each one for your lot</p>
   {_setback_mini(setbacks)}
   <p class="fine" style="margin-top:10px">{R.esc(RULES.doubling_caveat())}</p>
 </div>
 
 <div class="card">
   <h2>The paperwork, step by step</h2>
-  <p class="sub">Permits, order of operations, and who does what &mdash; the part nobody explains</p>
+  <p class="sub">Permits, order of operations, and who does what: the part nobody explains</p>
   <p class="fine">Well permits for this town run through {R.esc(permit_authority)}.
-  Fees below are planning context, not quotes &mdash; verify with the district before acting.</p>
+  Fees below are planning context, not quotes: verify with the district before acting.</p>
   <ol class="steps">{permit_steps}</ol>
 </div>
 
@@ -334,9 +336,9 @@ def build_screen(order, geo, wells, wq, setbacks, order_dir) -> str:
 <div class="card">
   <h2>Where this came from</h2>
   <div class="fine">
-  <p>Well records: {R.esc(wells.get("source", ""))}{pulled_txt} &mdash; online filings only
+  <p>Well records: {R.esc(wells.get("source", ""))}{pulled_txt}: online filings only
   (since 2021), so older wells exist on paper that we cannot see. Water quality:
-  {R.esc(wq.get("source", ""))} &mdash; regional samples, not a parcel prediction.
+  {R.esc(wq.get("source", ""))}: regional samples, not a parcel prediction.
   {R.esc(wq.get("final_word", ""))}</p>
   <p>{R.esc(R._biz(business, "report_disclaimer"))}</p>
   <p>This is a free pilot. Nobody was contacted on your behalf.</p>
@@ -431,9 +433,16 @@ def build_screen_json(order, geo, wells, wq, setbacks, order_dir) -> str:
         },
         "cost_band_usd": R.cost_band(wells),
         "water_quality": {
-            "flags": wq.get("flags") or [],
+            # Legacy plain-string flags/notes from older stage
+            # versions get the render-boundary punctuation cleanup
+            # (em-dash sweep, 2026-11-04); dict flags keep their
+            # structured shape untouched.
+            "flags": [WQ.clean_flag(f)
+                      for f in (wq.get("flags") or [])],
             "source": wq.get("source"),
-            "note": wq.get("note"),
+            "note": (WQ._clean_legacy(wq["note"])
+                     if isinstance(wq.get("note"), str)
+                     else wq.get("note")),
             "final_word": wq.get("final_word"),
         },
         "setbacks": [
@@ -457,7 +466,7 @@ def build_screen_json(order, geo, wells, wq, setbacks, order_dir) -> str:
             "water_quality": wq.get("source"),
             "setback_rules": ("CT Public Health Code 19-13-B51 + CT DPH Technical "
                               "Standards + district publications, from the verified "
-                              "rules table (Oct 2026) — field verification required"),
+                              "rules table (Oct 2026): field verification required"),
             "data_limitations": (
                 "Well records: online filings only (since 2021); older wells exist "
                 "on paper. Water quality: regional samples, not a parcel prediction. "

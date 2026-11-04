@@ -18,20 +18,20 @@ from pipeline import water_quality
 
 def _town_from(address: str) -> str:
     parts = [p.strip() for p in address.split(",")]
-    return parts[1] if len(parts) > 1 else "—"
+    return parts[1] if len(parts) > 1 else "n/a"
 
 
 def _well_rows(wells: dict) -> str:
     rows = []
     for w in wells.get("wells", []):
         def f(v, unit=""):
-            return f"{v:g}{unit}" if v is not None else "—"
+            return f"{v:g}{unit}" if v is not None else "n/a"
         rows.append(
             f"| {w['address']} | {f(w['depth_ft'], ' ft')} | {f(w['yield_gpm'], ' gpm')} "
             f"| {f(w['static_level_ft'], ' ft')} | {f(w.get('pumping_level_ft'), ' ft')} "
-            f"| {w['date'] or '—'} |"
+            f"| {w['date'] or 'n/a'} |"
         )
-    return "\n".join(rows) if rows else "| — | — | — | — | — | — |"
+    return "\n".join(rows) if rows else "| n/a | n/a | n/a | n/a | n/a | n/a |"
 
 
 # One shared map (CX pass, 2026-10-29): lives in nearby_wells with
@@ -62,7 +62,7 @@ def _storage_paragraph(st: dict) -> str:
         "**The borehole is a storage tank, not just a straw.** "
         "A standard 6-inch well holds about 1.5 gallons for every "
         f"foot of water standing in it, and the typical neighbor "
-        f"well here stands about {col:g} ft deep in water \u2014 "
+        f"well here stands about {col:g} ft deep in water: "
         f"roughly {gal:g} gallons in reserve before the aquifer has "
         "to keep up.",
         "",
@@ -127,7 +127,7 @@ def _well_strength(wells: dict) -> str:
             f"- {len(invalid)} filed test(s) report impossible water "
             f"levels (a during-test level shallower than the resting "
             f"level, or below the well bottom) and are excluded as data "
-            f"errors — do not rely on them.")
+            f"errors: do not rely on them.")
 
     return f"""
 **What the neighbors' yield tests recorded.** Gallons-per-minute is the
@@ -137,9 +137,9 @@ record the water levels, method and duration behind it:
 {chr(10).join(bullets)}
 
 **Bottom line:** sustained yield is unestablished from these filings.
-Each one records a single endpoint level — no measurement of whether
+Each one records a single endpoint level: no measurement of whether
 the level stabilized during the test, and no recovery measurement
-after it — so no conclusion about sustained production can be drawn
+after it, so no conclusion about sustained production can be drawn
 from them. Read the yields as what the driller recorded that day, and
 make any driller you hire talk through the deep, low-yield downside
 before you sign.
@@ -179,16 +179,16 @@ def build_packet(order, geo, wells, wq, setbacks, order_dir) -> str:
         if total is not None and dc is not None and yc is not None:
             evidence_line = (
                 f"{total} nearby water-supply wells on record: {dc} report "
-                f"depth, drilled {d['min']:g}–{d['max']:g} ft (median "
+                f"depth, drilled {d['min']:g} to {d['max']:g} ft (median "
                 f"{d['median']:g} ft); {yc} report yield, "
-                f"{y['min']:g}–{y['max']:g} gallons per minute (gpm)."
+                f"{y['min']:g} to {y['max']:g} gallons per minute (gpm)."
             )
         else:
             evidence_line = (
                 f"{wells['wells_with_depth_yield']} nearby water-supply wells "
                 f"with both depth and yield on file, drilled "
-                f"{d['min']:g}–{d['max']:g} ft (median {d['median']:g} ft), "
-                f"yielding {y['min']:g}–{y['max']:g} gallons per minute (gpm)."
+                f"{d['min']:g} to {d['max']:g} ft (median {d['median']:g} ft), "
+                f"yielding {y['min']:g} to {y['max']:g} gallons per minute (gpm)."
             )
     else:
         evidence_line = "Limited public well records near this parcel."
@@ -205,7 +205,7 @@ def build_packet(order, geo, wells, wq, setbacks, order_dir) -> str:
     ncdhd_permit_fee = rules.fee_amount("ct_fee_well_permit_ncdhd")
     ncdhd_site_fee = rules.fee_amount("ct_fee_site_investigation_ncdhd")
 
-    packet = f"""# DRAFT — Well Permit Packet
+    packet = f"""# DRAFT: Well Permit Packet
 
 **Not filed. Not a permit.** Generated {today} for order {order['order_id']}.
 Prefilled from public data + your order details. Verify every rule, fee, and
@@ -232,21 +232,20 @@ Source: {wells['source']}{f" (records pulled {wells['pulled_at']})" if wells.get
 {_well_rows(wells)}
 {_well_strength(wells)}
 **Reading this:** budget against the geology, not the average. The honest
-downside is a deep, low-yield hole — under the standard driller contract you
-still pay for the attempt (+$10k–$25k contingency band).
+downside is a deep, low-yield hole: under the standard driller contract you
+still pay for the attempt (+$10k to $25k contingency band).
 
 ## 4. Water-quality flags
 
 {wq_flags}
 
-- For a NEW well, Connecticut's required baseline test panel ({len(rules.testing_panel())} tests —
-  CGS 19a-37(c)(2), effective 2022-10-01) includes arsenic and uranium by law. Lead joins
+- For a NEW well, Connecticut's required baseline test panel ({len(rules.testing_panel())} tests: CGS 19a-37(c)(2), effective 2022-10-01) includes arsenic and uranium by law. Lead joins
   the required panel as a first-draw sample when the new well serves an EXISTING structure.
-  For an existing well tested voluntarily, none of these are automatic — request them on
+  For an existing well tested voluntarily, none of these are automatic: request them on
   the lab panel.
 - {wq['final_word']}
 
-## 5. Setback checklist (CT rules — your engineer confirms each distance on the site plan)
+## 5. Setback checklist (CT rules: your engineer confirms each distance on the site plan)
 
 A setback is the legal distance a well must sit from septic and water.
 
@@ -261,7 +260,7 @@ field soil/perc tests. {rules.doubling_caveat()}
 
 {rules.exception_paths_text()}
 
-## 6. Site sketch — PLACEHOLDER
+## 6. Site sketch: PLACEHOLDER
 
 [Schematic well-location sketch to be finalized with the driller + health
 district from the engineered site plan. Must show: the well relative to at
@@ -270,13 +269,13 @@ property lines, and any watercourses.]
 
 ## 7. Filing checklist & fees
 
-- [ ] Confirm the ownership path — the owner of record (or authorized agent) completes the owner sections
+- [ ] Confirm the ownership path: the owner of record (or authorized agent) completes the owner sections
 - [ ] Health-district site investigation, soil and percolation testing (North Central District: ${ncdhd_site_fee} per lot, fee schedule effective July 1, 2026. Fees vary by district, so confirm yours before you budget.)
-- [ ] Hire a CT-licensed well driller — the driller completes and signs the state permit as applicant (CT WWC-________)
+- [ ] Hire a CT-licensed well driller: the driller completes and signs the state permit as applicant (CT WWC-________)
 - [ ] File the CT DCP Well Drilling Permit via the health district (North Central District: ${ncdhd_permit_fee}, fee schedule effective July 1, 2026. Fees vary by district, so confirm yours.) The permit must be countersigned by the Director of Health or an agent before it is valid.
-- [ ] Run the septic track in parallel if needed (construction permit + plan review — verify current fees)
-- [ ] Drill — the driller files the Well Completion Report with you, CT DCP, and the health district
-- [ ] Test the water — the state-required new-well baseline panel (includes arsenic and uranium; first-draw lead too when the well serves an existing structure); add radon — recommended in CT bedrock country, not required — given local bedrock
+- [ ] Run the septic track in parallel if needed (construction permit + plan review; verify current fees)
+- [ ] Drill: the driller files the Well Completion Report with you, CT DCP, and the health district
+- [ ] Test the water: the state-required new-well baseline panel (includes arsenic and uranium; first-draw lead too when the well serves an existing structure); add radon: recommended in CT bedrock country, not required, given local bedrock
 
 Fees change. Confirm the current schedule with the health district when you file.
 Drilling itself is quoted separately by the driller you choose.
@@ -298,10 +297,10 @@ Business: ______________________  CT WWC-# __________  Signature: ______________
 
 **Health district (countersignature):**
 
-Approved / Rejected — Officer: ______________________  Signature: ______________________  Date: __________
+Approved / Rejected: Officer: ______________________  Signature: ______________________  Date: __________
 
 ---
-*DRAFT — generated {today}. Not filed with any agency. Not legal advice.*
+*DRAFT: generated {today}. Not filed with any agency. Not legal advice.*
 """
     path = f"{order_dir}/packet.md"
     with open(path, "w") as f:

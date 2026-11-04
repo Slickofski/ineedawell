@@ -44,7 +44,7 @@ def _geology_line(wells: dict) -> str:
             f"{d['min']:g}-{d['max']:g} ft (median {d['median']:g} ft), yielding "
             f"{y['min']:g}-{y['max']:g} gpm. Please quote against this geology."
         )
-    return "Limited public well records near this parcel — please quote on your local knowledge of the area."
+    return "Limited public well records near this parcel: please quote on your local knowledge of the area."
 
 
 def build_message(order, geo, wells, driller, kind: str, step: int = 0) -> dict:
@@ -65,7 +65,7 @@ def build_message(order, geo, wells, driller, kind: str, step: int = 0) -> dict:
 
     if kind == "initial":
         subject = _check(
-            "subject", f"Well drilling quote request — {address}")
+            "subject", f"Well drilling quote request: {address}")
         geo_line = _geology_line(wells)
         body = f"""Hello {company},
 
@@ -94,7 +94,7 @@ Thank you,
         day = FOLLOWUP_DAYS[step - 1]
         if step == 1:
             lead = (
-                "Just floating this back up — I'm still collecting quotes for the well "
+                "Just floating this back up: I'm still collecting quotes for the well "
                 "drill at the address below and would like to include yours."
             )
         else:
@@ -105,7 +105,7 @@ Thank you,
                 "terms is all I need."
             )
         subject = _check(
-            "subject", f"Re: Well drilling quote request — {address}")
+            "subject", f"Re: Well drilling quote request: {address}")
         body = f"""Hello {company},
 
 {lead}
@@ -122,7 +122,7 @@ Thank you,
 
 def _render(msg: dict, driller) -> str:
     """Render a structured message as the legacy draft text format."""
-    to_line = msg["to"] or ('[no email — use ' + driller['channel'] + ']')
+    to_line = msg["to"] or ('[no email: use ' + driller['channel'] + ']')
     return (f"To: {to_line}\n"
             f"From: {msg['from_display']}\n"
             f"Subject: {msg['subject']}\n"
@@ -145,11 +145,11 @@ def _channel_note(driller) -> str:
         return f"Send to {driller['email']} (harvested from {driller['website']})."
     if driller["channel"] == "webform":
         return (
-            f"No public email found — paste the email body into the contact form at "
+            f"No public email found: paste the email body into the contact form at "
             f"{driller['website']}. Backup: call {driller['phone']}."
         )
     return (
-        f"No website/email — read the email body as a phone script when calling "
+        f"No website/email: read the email body as a phone script when calling "
         f"{driller['phone']}."
     )
 
@@ -171,7 +171,7 @@ def build_outreach(order, geo, wells, ranked, outbox_dir) -> dict:
         for kind, msg in messages.items():
             path = os.path.join(outbox_dir, f"{d['slug']}_{kind}.txt")
             header = (
-                "DRAFT — NOT SENT. "
+                "DRAFT: NOT SENT. "
                 + _channel_note(d)
                 + "\n" + ("-" * 70) + "\n"
             )

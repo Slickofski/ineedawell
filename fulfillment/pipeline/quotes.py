@@ -71,7 +71,7 @@ def _company_key(r: dict) -> str:
 
 def _fmt(v, money=False):
     if v is None or v == "":
-        return "— not stated —"
+        return "not stated"
     if money and isinstance(v, (int, float)):
         return f"${v:,.0f}"
     return str(v)
@@ -87,7 +87,7 @@ def build_comparison(order, replies: list) -> tuple[str, list]:
             by_company[_company_key(r)] = r
     usable = list(by_company.values())
     lines = [
-        "# Driller quotes — side by side",
+        "# Driller quotes: side by side",
         "",
         f"Property: {order['property_address']}",
         f"{len(usable)} comparable quote(s) received.",
@@ -104,7 +104,7 @@ def build_comparison(order, replies: list) -> tuple[str, list]:
         "",
         "## Plain-English read",
         "",
-        "Compare total price first, then what depth that price covers — a cheaper "
+        "Compare total price first, then what depth that price covers: a cheaper "
         "quote with fewer included feet can cost more once drilling goes deep. "
         "Ask each driller what happens, in writing, if the hole is dry or low-yield: "
         "under the standard contract you still pay for the attempt.",
@@ -118,7 +118,7 @@ def build_comparison(order, replies: list) -> tuple[str, list]:
 def build_refund_instruction(order, state=None) -> str:
     c = order["customer"]
     if state is None:
-        state_block = ("Verified state: NOT COMPUTED — this instruction "
+        state_block = ("Verified state: NOT COMPUTED: this instruction "
                        "was generated without the send-log/refund checks, "
                        "so the trigger below is UNVERIFIED.")
     else:
@@ -132,9 +132,9 @@ def build_refund_instruction(order, state=None) -> str:
         lines.append(f"  - refund confirmed: "
                      f"{'YES (' + str(rec['reference']) + ')' if rec else 'NO'}")
         state_block = "\n".join(lines)
-    return f"""# REFUND INSTRUCTION — {order['order_id']}
+    return f"""# REFUND INSTRUCTION: {order['order_id']}
 
-Buyer: {c['name']} <{c['email']}> — {c['phone']}
+Buyer: {c['name']} <{c['email']}>: {c['phone']}
 Amount: $100.00 (concierge tier)
 
 {state_block}
@@ -147,7 +147,7 @@ Action required (needs Stripe):
   1. Refund $100.00 to the buyer's original payment method.
   2. Write orders/<id>/refund_confirmed.json with the amount,
      the Stripe refund reference, and the date.
-  3. Re-run ingest_quotes.py — the refund notice sends only when the
+  3. Re-run ingest_quotes.py: the refund notice sends only when the
      window, the follow-ups, AND the confirmed refund all verify.
 
 Do not retry outreach without the buyer's explicit go-ahead.

@@ -157,7 +157,7 @@ def _public_water_verdict(wells, parcel_acres=None):
     counts = (f"{ab_r} of the filings near this parcel are well "
               f"abandonments, and town-wide in {town} the record shows "
               f"{ab_t} abandonments against {wsw_t or 0} water-supply wells")
-    bar = ("The filings don't say WHY those wells were sealed \u2014 "
+    bar = ("The filings don't say WHY those wells were sealed: "
            "replacement wells, demolitions and public-water hookups "
            "all produce abandonment records. A public main arriving "
            "is one possible explanation, so check whether public "
@@ -168,15 +168,15 @@ def _public_water_verdict(wells, parcel_acres=None):
            "parcel boundary sits within 200 ft of an approved public "
            "water supply.")
     if parcel_acres is not None and parcel_acres >= TRACT_MIN_ACRES:
-        return ("caution", "Wells here were sealed \u2014 check for a street main before budgeting",
+        return ("caution", "Wells here were sealed: check for a street main before budgeting",
                 f"No water-supply wells in the online record (filings since "
-                f"2021) for this {parcel_acres:g}-acre tract \u2014 but the "
+                f"2021) for this {parcel_acres:g}-acre tract, but the "
                 f"record is not empty: {counts}. {bar} At tract scale that "
                 "can change the whole approval picture: public water at "
                 "the street may serve the lots, or bar wells lot by lot.")
-    return ("caution", "Wells here were sealed \u2014 check for a street main before budgeting",
+    return ("caution", "Wells here were sealed: check for a street main before budgeting",
             f"No water-supply wells in the online record (filings since "
-            f"2021) near this parcel \u2014 but the record is not empty: "
+            f"2021) near this parcel, but the record is not empty: "
             f"{counts}. {bar}")
 
 
@@ -228,7 +228,7 @@ def _verdict(wells, parcel_acres=None):
     # depth min/max actually exist, never unconditionally.
     depth_note = ""
     if d.get("min") is not None and d.get("max") is not None:
-        depth_note = (f" (depths {d['min']:g}\u2013{d['max']:g} ft "
+        depth_note = (f" (depths {d['min']:g} to {d['max']:g} ft "
                       "where recorded)")
     caveat = ("The record only covers wells filed online since 2021, so "
               "treat it as evidence, not a guarantee.")
@@ -265,7 +265,7 @@ def _verdict(wells, parcel_acres=None):
                 " One caution inside the good news: these wells stand "
                 f"shallow (typical standing reserve only about {_gal:g} "
                 "gal in the bore), so a long heavy draw can outrun the "
-                "well even at these yields \u2014 ask drillers about it.")
+                "well even at these yields: ask drillers about it.")
             _caution_storage = ""
         else:
             _good_storage = (
@@ -275,8 +275,8 @@ def _verdict(wells, parcel_acres=None):
                 "strong test day.")
             _caution_storage = (
                 " One fact the yield number hides: these wells stand "
-                f"deep \u2014 a typical standing reserve of about {_gal:g} "
-                "gallons in the bore \u2014 which can carry a household "
+                f"deep: a typical standing reserve of about {_gal:g} "
+                "gallons in the bore, which can carry a household "
                 "through peak use while the well refills. Still a site "
                 "question; a driller should confirm it on site.")
     else:
@@ -291,10 +291,10 @@ def _verdict(wells, parcel_acres=None):
     if parcel_acres is not None and parcel_acres >= TRACT_MIN_ACRES:
         ac = f"{parcel_acres:g}"
         if zeros:
-            return ("caution", "Zero-yield records \u2014 approvals and water both open",
+            return ("caution", "Zero-yield records: approvals and water both open",
                     f"{counts} {zeros} of the yield-bearing record(s) "
                     f"recorded zero yield. On a {ac}-acre tract that is a "
-                    "per-lot risk, not a footnote — and before any of it, "
+                    "per-lot risk, not a footnote, and before any of it, "
                     "the subdivision question decides what can be built "
                     "here at all. Get the approval picture and driller "
                     "opinions before you commit.")
@@ -305,11 +305,11 @@ def _verdict(wells, parcel_acres=None):
                 # Approvals still gate the parcel; the cap changes
                 # only the water class.
                 return ("caution",
-                        "Strong yields, thin reserve \u2014 approvals "
+                        "Strong yields, thin reserve: approvals "
                         "decide this tract",
                         f"All {n_y} nearby records report yields of "
-                        f"{y.get('min'):g}\u2013{y.get('max'):g} gallons per minute"
-                        f"{depth_note} \u2014 encouraging per-well "
+                        f"{y.get('min'):g} to {y.get('max'):g} gallons per minute"
+                        f"{depth_note}: encouraging per-well "
                         "production, but the wells stand shallow: the "
                         "typical standing reserve is only "
                         f"about {_st['median_storage_gal']:g} gal of water in "
@@ -322,13 +322,13 @@ def _verdict(wells, parcel_acres=None):
                         "parcel: what can legally be built, how many "
                         "lots, and whether each lot can carry its own "
                         "well and septic. Approvals still decide this "
-                        "tract \u2014 and the thin per-lot reserve needs "
+                        "tract, and the thin per-lot reserve needs "
                         "a driller's answer too. " + caveat)
-            return ("good", "Good water evidence \u2014 approvals decide this tract",
+            return ("good", "Good water evidence: approvals decide this tract",
                     f"All {n_y} nearby records report yields of "
-                    f"{y.get('min'):g}\u2013{y.get('max'):g} gallons per minute"
-                    f"{depth_note}. That is encouraging per-well evidence "
-                    f"\u2014 but this is a {ac}-acre tract, not a single "
+                    f"{y.get('min'):g} to {y.get('max'):g} gallons per minute"
+                    f"{depth_note}. That is encouraging per-well evidence"
+                    f", but this is a {ac}-acre tract, not a single "
                     "homesite. Whether water works here gets answered lot "
                     "by lot, and only after the question that actually "
                     "gates this parcel: what can legally be built, how "
@@ -344,11 +344,11 @@ def _verdict(wells, parcel_acres=None):
             # standing reserve. Approvals still gate the parcel; the
             # lift changes only the water class.
             return ("good",
-                    "Workable water, deep reserve \u2014 approvals decide "
+                    "Workable water, deep reserve: approvals decide "
                     "this tract",
                     f"{counts} Recorded yields run "
-                    f"{min(ev['values']):g}\u2013{max(ev['values']):g} gallons per minute (gpm) "
-                    "\u2014 low per-well production on the filed "
+                    f"{min(ev['values']):g} to {max(ev['values']):g} gallons per minute (gpm)"
+                    ": low per-well production on the filed "
                     "numbers. But the wells stand deep: the typical "
                     "well holds "
                     f"about {_st['median_storage_gal']:g} gallons of water "
@@ -356,24 +356,24 @@ def _verdict(wells, parcel_acres=None):
                     "lot through peak use while the well refills at "
                     "the filed rate. The reserve covers peaks; it does "
                     "not raise what a well produces, and sustained "
-                    "yield is unestablished from these records \u2014 "
+                    "yield is unestablished from these records: "
                     "each lot still needs a driller's confirmation. "
                     "And before any of it, the subdivision question "
                     f"decides what can be built on this {ac}-acre "
                     "tract at all: approvals, layout, and per-lot "
                     "septic feasibility gate the parcel. " + caveat)
         if total >= 1:
-            return ("caution", "Thin water record \u2014 approvals come first on a tract",
+            return ("caution", "Thin water record: approvals come first on a tract",
                     f"{counts} That is thin yield evidence for a "
                     f"{ac}-acre tract: per-lot depth and yield stay "
-                    "uncertain \u2014 and before any of that, the subdivision "
+                    "uncertain, and before any of that, the subdivision "
                     "question decides what can be built here at all. Budget "
                     "for the deep end, and get the approval picture and "
                     "driller opinions before you commit.")
         pw = _public_water_verdict(wells, parcel_acres)
         if pw:
             return pw
-        return ("caution", "Nothing on record \u2014 approvals first, water unproven",
+        return ("caution", "Nothing on record: approvals first, water unproven",
                 "No nearby water-supply wells in the online record (filings "
                 f"since 2021) for this {ac}-acre tract. Neighbors may have "
                 "older wells on paper at the health district. At tract "
@@ -381,23 +381,23 @@ def _verdict(wells, parcel_acres=None):
                 "per-lot water second: budget for the deep end and talk to "
                 "the health district and drillers early.")
     if zeros:
-        return ("caution", "Zero-yield records \u2014 ask drillers and the health district why",
+        return ("caution", "Zero-yield records: ask drillers and the health district why",
                 f"{counts} {zeros} of the yield-bearing record(s) recorded "
-                "zero yield \u2014 a drilled well that filed no production. "
+                "zero yield: a drilled well that filed no production. "
                 "That is a red flag to investigate with drillers and the "
                 "health district, not a detail. " + caveat)
     if total == 0:
         pw = _public_water_verdict(wells, parcel_acres)
         if pw:
             return pw
-        return ("caution", "No local record to lean on \u2014 budget for the deep end",
+        return ("caution", "No local record to lean on: budget for the deep end",
                 "No nearby water-supply wells in the online record (filings "
                 "since 2021). Neighbors may have older wells on paper at "
                 "the health district. Until then, this parcel is a "
                 "research project: budget for the deep end and talk to "
                 "drillers early.")
     if n_y == 0:
-        return ("caution", "No yield on record \u2014 nothing here proves water",
+        return ("caution", "No yield on record: nothing here proves water",
                 f"{counts} Depths on file are not production evidence: "
                 "with no recorded yield, nothing here shows what a well "
                 "at this parcel would deliver. Budget for the deep end "
@@ -405,13 +405,13 @@ def _verdict(wells, parcel_acres=None):
     if n_y < 3 or n_y < total:
         if n_y == 1:
             scope = (f"The single recorded yield is "
-                     f"{ev['values'][0]:g} gallons per minute (gpm) \u2014 one record, so no "
+                     f"{ev['values'][0]:g} gallons per minute (gpm): one record, so no "
                      "range can be drawn from it.")
         else:
             scope = (f"Recorded yields run "
-                     f"{min(ev['values']):g}\u2013{max(ev['values']):g} gallons per minute (gpm) "
+                     f"{min(ev['values']):g} to {max(ev['values']):g} gallons per minute (gpm) "
                      f"across those {n_y} records only.")
-        return ("caution", "Not enough records to call it \u2014 budget for the deep end",
+        return ("caution", "Not enough records to call it: budget for the deep end",
                 f"{counts} {scope} A thin record means wider uncertainty "
                 "on depth and yield. Budget for the deep end and get "
                 "driller opinions before you commit.")
@@ -421,22 +421,22 @@ def _verdict(wells, parcel_acres=None):
         if _cap_thin:
             # Re-gate thin cap: yield alone can no longer earn
             # "good" when the standing reserve behind it is thin.
-            return ("caution", "Strong flow, thin reserve \u2014 ask a driller before you commit",
+            return ("caution", "Strong flow, thin reserve: ask a driller before you commit",
                     f"All {n_y} nearby records report yields of "
-                    f"{y.get('min'):g}\u2013{y.get('max'):g} gallons per minute"
-                    f"{depth_note} \u2014 strong filed production. But "
+                    f"{y.get('min'):g} to {y.get('max'):g} gallons per minute"
+                    f"{depth_note}: strong filed production. But "
                     "these wells stand shallow: the typical standing "
                     f"reserve is only about {_st['median_storage_gal']:g} gal "
                     "of water in the bore, so one long heavy draw can "
                     "outrun the reserve even at these yields. Whether "
                     "that serves a home here turns on the reserve, not "
-                    "the test-day number \u2014 ask drillers about it "
+                    "the test-day number: ask drillers about it "
                     "before you commit. " + caveat)
         return ("good", "Good water outlook",
                 f"All {n_y} nearby records report yields of "
-                f"{y.get('min'):g}\u2013{y.get('max'):g} gallons per minute"
+                f"{y.get('min'):g} to {y.get('max'):g} gallons per minute"
                 f"{depth_note}. That is a workable aquifer for a single-family "
-                "home \u2014 but " + caveat[0].lower() + caveat[1:]
+                "home, but " + caveat[0].lower() + caveat[1:]
                 + _good_storage)
     if _lift_deep:
         # Re-gate deep lift: complete evidence, low filed yield, but
@@ -444,23 +444,23 @@ def _verdict(wells, parcel_acres=None):
         # well refills. The reserve covers peaks \u2014 it does not
         # raise sustained production, which stays unestablished.
         return ("good",
-                "Workable for a house \u2014 low flow, deep reserve",
+                "Workable for a house: low flow, deep reserve",
                 f"{counts} The typical neighbor well "
                 f"holds about {_st['median_storage_gal']:g} gallons of water "
-                "standing in the bore \u2014 a reserve that can carry a "
+                "standing in the bore: a reserve that can carry a "
                 "household through peak use while the well refills. "
                 "Recorded yields run "
-                f"{min(ev['values']):g}\u2013{max(ev['values']):g} gallons "
-                "per minute (gpm) \u2014 low on the filed numbers, so on "
+                f"{min(ev['values']):g} to {max(ev['values']):g} gallons "
+                "per minute (gpm): low on the filed numbers, so on "
                 "yield alone this neighborhood would stay a caution. "
                 "The reserve covers peaks; it does not "
                 "raise what the well produces, and sustained yield is "
-                "unestablished from these records \u2014 a driller "
+                "unestablished from these records: a driller "
                 "should confirm it on site. " + caveat)
-    return ("caution", "Water on record, amount unproven \u2014 get driller opinions before you commit",
+    return ("caution", "Water on record, amount unproven: get driller opinions before you commit",
             f"{counts} Recorded yields run "
-            f"{min(ev['values']):g}\u2013{max(ev['values']):g} gallons per minute (gpm). Whether "
-            "that serves a home here is a site question \u2014 budget for "
+            f"{min(ev['values']):g} to {max(ev['values']):g} gallons per minute (gpm). Whether "
+            "that serves a home here is a site question: budget for "
             "the deep end and get driller opinions before you commit. "
             + caveat + _caution_storage)
 
@@ -511,7 +511,7 @@ def _stats_html(n_wells, wells, meta, include_range=False):
         '<div class="l">median yield</div></div>' if med_y is not None else "")
     if include_range:
         parts.append(
-            f'<div class="stat"><div class="n">{d.get("min"):g}\u2013{d.get("max"):g} ft</div>'
+            f'<div class="stat"><div class="n">{d.get("min"):g} to {d.get("max"):g} ft</div>'
             '<div class="l">local depth range</div></div>' if d.get("min") else "")
     return "\n".join(parts)
 
@@ -568,7 +568,7 @@ def cost_band(wells):
         # town the records actually came from, not the property's town.
         town = wells.get("stats_town") or wells.get("town") or "town"
         deep_basis = (f"{town} p90 depth ({t['p90']:g} ft across "
-                      f"{t.get('n', '?')} town records) — the local sample "
+                      f"{t.get('n', '?')} town records): the local sample "
                       f"was too small to see the deep tail")
     # Rates, contingency, and permit figures are rules-as-data
     # (cost-source pass, 2026-11-04): the rules table carries each
@@ -601,7 +601,7 @@ def cost_band(wells):
                    "casing; rates are planning points from published "
                    "national cost guides (Angi, CostHelper, National "
                    "Ground Water Association Well Owners Guide, "
-                   "DrillerDB) — planning context only, driller "
+                   "DrillerDB): planning context only, driller "
                    "quotes are the real numbers"),
         "scenarios": [
             {"label": "If the geology cooperates", "depth_ft": lo,
@@ -640,7 +640,7 @@ def cost_band(wells):
                           "deepen it, hydrofracture it, or drill again "
                           "somewhere else. Carry a "
                           f"${cont[0]:,} to ${cont[1]:,} contingency "
-                          "for that — our planning allowance, built "
+                          "for that: our planning allowance, built "
                           "from the rates above, not a published figure."),
     }
 
@@ -648,20 +648,20 @@ def cost_band(wells):
 def _cost_section(wells):
     band = cost_band(wells)
     if band is None:
-        return ("<p>Not enough local depth records to build a planning band — "
+        return ("<p>Not enough local depth records to build a planning band: "
                 "get three driller quotes and ask each what depth they would "
                 "permit and drill to on this lot.</p>")
     sc = band["scenarios"]
     cards = "\n".join([
         f'<div class="scenario"><div class="t">{esc(sc[0]["label"])}</div>'
         f'<div class="c">{money(sc[0]["estimate_usd"])}</div>'
-        f'<div class="m">{sc[0]["depth_ft"]:g} ft &times; about ${sc[0]["rate_usd_per_ft"]}/ft &mdash; {esc(sc[0]["basis"])}</div></div>',
+        f'<div class="m">{sc[0]["depth_ft"]:g} ft &times; about ${sc[0]["rate_usd_per_ft"]}/ft: {esc(sc[0]["basis"])}</div></div>',
         f'<div class="scenario"><div class="t">{esc(sc[1]["label"])}</div>'
         f'<div class="c">{money(sc[1]["estimate_usd"])}</div>'
-        f'<div class="m">{sc[1]["depth_ft"]:g} ft &times; about ${sc[1]["rate_usd_per_ft"]}/ft &mdash; {esc(sc[1]["basis"])}</div></div>',
+        f'<div class="m">{sc[1]["depth_ft"]:g} ft &times; about ${sc[1]["rate_usd_per_ft"]}/ft: {esc(sc[1]["basis"])}</div></div>',
         f'<div class="scenario hot"><div class="t">{esc(sc[2]["label"])}</div>'
         f'<div class="c">{money(sc[2]["estimate_usd"])}+</div>'
-        f'<div class="m">{sc[2]["depth_ft"]:g} ft &times; about ${sc[2]["rate_usd_per_ft"]}/ft &mdash; {esc(sc[2]["basis"])}</div></div>',
+        f'<div class="m">{sc[2]["depth_ft"]:g} ft &times; about ${sc[2]["rate_usd_per_ft"]}/ft: {esc(sc[2]["basis"])}</div></div>',
     ])
     permit_fee = RULES.fee_amount("ct_fee_well_permit_ncdhd")
     bloom_fee = RULES.fee_amount("ct_fee_well_only_whbhd")
@@ -691,7 +691,7 @@ ${bloom_fee} in Bloomfield; check your district's current fee schedule).
 the attempt. Drillers bill per foot whether or not the hole produces, so a
 failed hole at the depths common around here can run about $9,000 to $18,000
 at the plan-on rate, before you decide whether to deepen it, hydrofracture
-it, or drill again somewhere else. We carry a <b>+${cont_lo:,}&ndash;${cont_hi:,}
+it, or drill again somewhere else. We carry a <b>+${cont_lo:,} to ${cont_hi:,}
 contingency</b> for that. It is our planning allowance, built from the rates
 above, not a published figure. Your three driller quotes are the real
 numbers; this band is what you walk in with.</p>
@@ -704,7 +704,7 @@ def setback_number_phrase(it) -> str:
     number keeps its condition attached at the detail line below."""
     ft = esc(it.get("minimum_ft"))
     if (it.get("confidence") or "").upper() == "GUIDANCE":
-        return (f"{ft} ft &mdash; district guidance "
+        return (f"{ft} ft: district guidance "
                 f"('if possible'), not a state minimum")
     return f"{ft} ft minimum"
 
@@ -737,7 +737,7 @@ def _setback_rows(setbacks):
         badge = ("warn", "to confirm") if "verif" in status or "field" in status else ("ok", esc(it.get("status")))
         out.append(
             f'<div class="setback"><span class="badge {badge[0]}">{badge[1]}</span>'
-            f'<div><b>{esc(it.get("rule"))}</b> &mdash; {setback_number_phrase(it)}'
+            f'<div><b>{esc(it.get("rule"))}</b>: {setback_number_phrase(it)}'
             f'<div class="fine">{setback_detail(it)}</div>'
             f'<div class="fine">{esc(it.get("finding") or "")}</div></div></div>'
         )
@@ -796,7 +796,7 @@ def build_report(order, geo, wells, wq, setbacks, ranked, order_dir) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(pname)} &mdash; {esc(order["property_address"])}</title>
+<title>{esc(pname)}: {esc(order["property_address"])}</title>
 <style>{CSS}
 </head>
 <body>
@@ -817,7 +817,7 @@ def build_report(order, geo, wells, wq, setbacks, ranked, order_dir) -> str:
 
 <div class="card">
   <h2>Nearby well evidence</h2>
-  <p class="sub">Public completion reports near this parcel &mdash; {esc(wells.get("source", ""))}</p>
+  <p class="sub">Public completion reports near this parcel: {esc(wells.get("source", ""))}</p>
   {_depth_bars(wells)}
   <p class="fine" style="margin-top:12px"><b>Reading this:</b> budget against the
   geology, not the average. Wells were drilled by: {esc(", ".join(sorted({w.get("company") for w in wells.get("wells", []) if w.get("company")}))) or "n/a"}.</p>
@@ -825,20 +825,20 @@ def build_report(order, geo, wells, wq, setbacks, ranked, order_dir) -> str:
 
 <div class="card">
   <h2>What it will cost to plan for</h2>
-  <p class="sub">Planning band from the local depth range &mdash; your driller quotes are the real numbers</p>
+  <p class="sub">Planning band from the local depth range: your driller quotes are the real numbers</p>
   {_cost_section(wells)}
 </div>
 
 <div class="card">
   <h2>Water-quality flags</h2>
-  <p class="sub">{esc(wq.get("source", ""))} &mdash; {esc(wq.get("note", ""))}</p>
+  <p class="sub">{esc(wq.get("source", ""))}: {esc(WQ._clean_legacy(wq.get("note") or ""))}</p>
   <ul class="flags">{wq_flags}</ul>
   <p class="fine" style="margin-top:12px"><b>{esc(wq.get("final_word", ""))}</b></p>
 </div>
 
 <div class="card">
   <h2>Setback checklist</h2>
-  <p class="sub">Setbacks are the legal distance a well must sit from septic and water &mdash; CT rules; your engineer confirms each one for your lot</p>
+  <p class="sub">Setbacks are the legal distance a well must sit from septic and water: CT rules; your engineer confirms each one for your lot</p>
   {_setback_rows(setbacks)}
   <p class="fine" style="margin-top:12px">{esc(setbacks.get("confidence_note", ""))}</p>
   <p class="fine">{esc(RULES.doubling_caveat())}</p>
@@ -846,7 +846,7 @@ def build_report(order, geo, wells, wq, setbacks, ranked, order_dir) -> str:
 
 <div class="card">
   <h2>Who to call</h2>
-  <p class="sub">Drillers active near this parcel, ranked by proximity &mdash; call two or three for competing quotes</p>
+  <p class="sub">Drillers active near this parcel, ranked by proximity: call two or three for competing quotes</p>
   <div class="drillers">{_driller_cards(ranked)}</div>
 </div>
 
@@ -854,8 +854,8 @@ def build_report(order, geo, wells, wq, setbacks, ranked, order_dir) -> str:
   <h2>Your next steps</h2>
   <ol class="steps">
     <li><b>Decide with eyes open.</b> If the outlook above works for your budget including the contingency, this lot is drillable on paper.</li>
-    <li><b>Get three quotes.</b> Ask each driller: what depth would you permit for, what's your per-foot rate, and what happens &mdash; exactly &mdash; if the hole is dry or low-yield?</li>
-    <li><b>Plan the lab test now.</b> Connecticut requires arsenic and uranium testing for new wells &mdash; confirm the panel with a certified lab, and ask whether radon makes sense for your lot.</li>
+    <li><b>Get three quotes.</b> Ask each driller: what depth would you permit for, what's your per-foot rate, and what happens, exactly, if the hole is dry or low-yield?</li>
+    <li><b>Plan the lab test now.</b> Connecticut requires arsenic and uranium testing for new wells: confirm the panel with a certified lab, and ask whether radon makes sense for your lot.</li>
     <li><b>File with the health district.</b> Your driller signs the state permit as applicant; the health director countersigns before it is valid.</li>
   </ol>
 </div>
@@ -865,13 +865,12 @@ def build_report(order, geo, wells, wq, setbacks, ranked, order_dir) -> str:
   <div class="fine">
   <h3>Where every number came from</h3>
   <p>Coordinates: {esc(geo.get("source", ""))} ({geo.get("lat"):.5f}, {geo.get("lon"):.5f}).
-  Well records: {esc(wells.get("source", ""))} &mdash; online submissions only, so
+  Well records: {esc(wells.get("source", ""))}: online submissions only, so
   older wells exist on paper at the health district that we cannot see.
-  Water quality: {esc(wq.get("source", ""))} &mdash; regional sample rows, not a
+  Water quality: {esc(wq.get("source", ""))}: regional sample rows, not a
   parcel prediction. Setbacks: CT rules from a single rules table keyed by
   town and district (PHC 19-13-B51, CT DPH Technical Standards, and district
-  publications), each rule carrying its citation and confidence label &mdash;
-  the health district has the
+  publications), each rule carrying its citation and confidence label: the health district has the
   final word on your lot.</p>
   <h3>What this report is not</h3>
   <p>{esc(_biz(business, "report_disclaimer"))} Not legal advice. Not an
@@ -925,18 +924,19 @@ def build_delivery_html(order, wells, wq) -> str:
             f'<table width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 4px">'
             f'{scen_rows}</table>'
             f'<p style="margin:8px 0 0;font-size:14px;color:#5b6b7f">'
-            f'Dry-hole contingency to carry: <b style="color:#16283a">+${lo:,}&ndash;${hi:,}</b> '
-            f'&mdash; you pay for the attempt even if it&rsquo;s dry.</p>'
+            f'Dry-hole contingency to carry: <b style="color:#16283a">+${lo:,} to ${hi:,}</b> '
+            f': you pay for the attempt even if it\'s dry.</p>'
             f'<p style="margin:6px 0 0;font-size:13px;color:#5b6b7f">'
-            f'Planning band, not a quote &mdash; your driller quotes are the real numbers.</p>'
+            f'Planning band, not a quote: your driller quotes are the real numbers.</p>'
         )
     else:
         cost_html = ('<p style="margin:4px 0 0;font-size:15px;color:#16283a">'
-                     'Not enough nearby depth records to price &mdash; '
+                     'Not enough nearby depth records to price: '
                      'the snapshot explains why.</p>')
 
     def _flag_row(f):
         if isinstance(f, dict):
+            f = WQ.clean_flag(f)
             return (
                 f'<tr><td style="padding:8px 0;border-bottom:1px solid #eef2f7;'
                 f'vertical-align:top"><span style="font-size:15px;font-weight:800;'
@@ -944,7 +944,7 @@ def build_delivery_html(order, wells, wq) -> str:
                 f'<span style="font-size:14px;color:#5b6b7f">{esc(f.get("summary", ""))}</span></td></tr>'
             )
         return (f'<tr><td style="padding:8px 0;border-bottom:1px solid #eef2f7;'
-                f'font-size:14px;color:#5b6b7f">{esc(f)}</td></tr>')
+                f'font-size:14px;color:#5b6b7f">{esc(WQ.format_flag(f))}</td></tr>')
     wq_rows = "".join(_flag_row(f) for f in (wq.get("flags") or []))
 
     # $39 dossier-intent favor: parked 2026-10-24 (FLAGS module). While
@@ -955,7 +955,7 @@ def build_delivery_html(order, wells, wq) -> str:
         favor2_html = (
             '<br>\n<b style="color:#16283a">2.</b> An honest YES or NO: '
             'if you were looking at another lot next month, would you pay '
-            '$39 for the full report &mdash; deeper well evidence, a '
+            '$39 for the full report: deeper well evidence, a '
             'ranked driller shortlist for the parcel, the full setback '
             'workup, and a print-ready summary? No sales pitch coming '
             'either way; it just tells me whether to build it.')
@@ -979,8 +979,8 @@ def build_delivery_html(order, wells, wq) -> str:
 
 <tr><td style="padding:24px 30px 6px;">
 <p style="margin:0 0 14px;font-size:15px;color:#16283a;line-height:1.55;">
-Hi {esc(first)} &mdash; Marcin here, from <a href="{esc(site_url)}" style="color:#0f766e;font-weight:700;">I Need a Well</a>.
-Here&rsquo;s the 60-second answer so you don&rsquo;t even have to open the attachment.</p>
+Hi {esc(first)}, Marcin here, from <a href="{esc(site_url)}" style="color:#0f766e;font-weight:700;">I Need a Well</a>.
+Here's the 60-second answer so you don't even have to open the attachment.</p>
 </td></tr>
 
 <tr><td style="padding:6px 30px;">
@@ -998,7 +998,7 @@ Here&rsquo;s the 60-second answer so you don&rsquo;t even have to open the attac
 
 <tr><td style="padding:18px 30px 6px;">
 <p style="margin:0 0 2px;font-size:17px;font-weight:800;color:#16283a;">Water: what to test</p>
-<p style="margin:0 0 6px;font-size:13.5px;color:#5b6b7f;">Required on every new CT well &mdash; arsenic and uranium. Radon is your call.</p>
+<p style="margin:0 0 6px;font-size:13.5px;color:#5b6b7f;">Required on every new CT well: arsenic and uranium. Radon is your call.</p>
 <table width="100%" cellpadding="0" cellspacing="0">{wq_rows}</table>
 </td></tr>
 
@@ -1009,8 +1009,8 @@ Here&rsquo;s the 60-second answer so you don&rsquo;t even have to open the attac
 </td></tr>
 
 <tr><td style="padding:10px 30px 26px;">
-<p style="margin:0 0 12px;font-size:14.5px;color:#334155;">And whether you reply or not &mdash; thanks for reading. That&rsquo;s what keeps this free.</p>
-<p style="margin:0;font-size:14.5px;color:#16283a;">&mdash; Marcin<br>
+<p style="margin:0 0 12px;font-size:14.5px;color:#334155;">And whether you reply or not: thanks for reading. That's what keeps this free.</p>
+<p style="margin:0;font-size:14.5px;color:#16283a;">Marcin<br>
 <a href="{esc(site_url)}" style="color:#0f766e;font-weight:700;">I Need a Well</a>
 <span style="color:#5b6b7f;">&middot; free pilot</span></p>
 </td></tr>

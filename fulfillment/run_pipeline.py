@@ -127,7 +127,7 @@ def main():
     print("[6/9] driller match")
     ranked = drillers.rank_drillers(order, geo, order_dir)
     for d in ranked["drillers"]:
-        print(f"      {d['company']} ({d['town']}) — {d['distance_miles']} mi — {d['channel']}")
+        print(f"      {d['company']} ({d['town']}): {d['distance_miles']} mi: {d['channel']}")
 
     print("[7/9] outreach drafts")
     manifest = outreach.build_outreach(order, geo, wells, ranked, outbox_dir)
@@ -151,7 +151,7 @@ def main():
         if item["channel"] != "email":
             mailer.dry_skip(to or item["to"], subject or "bid request",
                             order_dir, "initial",
-                            f"manual channel ({item['channel']}) — draft only")
+                            f"manual channel ({item['channel']}): draft only")
             continue
         # Recipient verification (R05): the final recipient must equal
         # the selected driller record's email — a mismatch raises and
@@ -163,7 +163,7 @@ def main():
             sent += 1 if res["ok"] else 0
             if res.get("already_sent"):
                 print(f"      ALREADY SENT (prior run) initial -> "
-                      f"{d['company']} ({to}) — skipped, not resent")
+                      f"{d['company']} ({to}): skipped, not resent")
             else:
                 print(f"      SENT initial -> {d['company']} ({to})"
                       if res["ok"] else f"      SEND FAILED -> {d['company']}: {res['error']}")

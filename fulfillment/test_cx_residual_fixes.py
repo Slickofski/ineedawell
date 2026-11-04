@@ -89,7 +89,7 @@ class TestConfidencePlainMapping(unittest.TestCase):
                          "written in the state health code")
         self.assertEqual(
             rules.confidence_plain("OPINION"),
-            "standard professional reading — not spelled out "
+            "standard professional reading: not spelled out "
             "word-for-word in the code")
         self.assertEqual(rules.confidence_plain("UNVERIFIED"),
                          "not yet verified")

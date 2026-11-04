@@ -43,7 +43,7 @@ def roadmap(town: str) -> list:
         {
             "step": "Before you commit: get driller quotes",
             "who": "You",
-            "detail": ("Get 2\u20133 quotes from Connecticut-licensed well drillers. "
+            "detail": ("Get 2 to 3 quotes from Connecticut-licensed well drillers. "
                        "Ask each one: what depth would you permit for this lot, and "
                        "what exactly do I pay if the hole comes up dry?"),
         },
@@ -51,7 +51,7 @@ def roadmap(town: str) -> list:
             "step": "Verify the driller's license",
             "who": "You",
             "detail": ("Well drillers must hold a Connecticut Department of Consumer "
-                       "Protection license. Check it before you sign anything — "
+                       "Protection license. Check it before you sign anything: "
                        "an unlicensed driller can't pull your permit."),
         },
         {
@@ -75,25 +75,25 @@ def roadmap(town: str) -> list:
                        "higher bands). "
                        + rules.doubling_caveat() +
                        " This is the step that kills bad lot "
-                       "layouts \u2014 better to learn it now than after you own the lot."),
+                       "layouts: better to learn it now than after you own the lot."),
         },
         {
             "step": "Drill the well",
             "who": "Your driller",
-            "detail": ("You pay for the attempt whether the hole comes up wet or dry "
-                       "\u2014 that's why the cost band in this snapshot carries the "
+            "detail": ("You pay for the attempt whether the hole comes up wet or dry"
+                       ": that's why the cost band in this snapshot carries the "
                        "dry-hole contingency. Get the driller's dry-hole policy in writing."),
         },
         {
             "step": "Lab-test the water",
             "who": "You, through a certified lab",
             "detail": ("Every new CT well must be lab-tested on the "
-                       "state-required baseline panel \u2014 15 tests, "
+                       "state-required baseline panel: 15 tests, "
                        "including arsenic and uranium (CGS 19a-37(c)(2), "
                        "since October 1, 2022). If the well serves an "
                        "existing structure, a first-draw lead sample from "
                        "the plumbing is also required. Ask the lab whether "
-                       "radon testing makes sense for your lot too \u2014 the "
+                       "radon testing makes sense for your lot too: the "
                        "water section above flags what your area's geology "
                        "suggests."),
         },
@@ -111,7 +111,7 @@ def roadmap(town: str) -> list:
             "step": "Keep your paperwork",
             "who": "You",
             "detail": ("Get a copy of the well completion report your driller files "
-                       "with the state, and keep it with the deed. Future buyers \u2014 "
-                       "and future you \u2014 will want it."),
+                       "with the state, and keep it with the deed. Future buyers, "
+                       "and future you, will want it."),
         },
     ]

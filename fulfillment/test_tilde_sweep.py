@@ -156,5 +156,79 @@ class TestFullSurfaceRender(unittest.TestCase):
                           packet_text)
 
 
+def assert_no_ai_typography(case, text, where):
+    """Em-dash sweep (Marcin's order, 2026-11-04): no em dashes, no
+    dash entities, no en dashes, no smart quotes, no emoji icons in
+    customer-visible copy. Marcin reads them as AI-writing tells."""
+    for bad in ("—", "&mdash;", "&#8212;", "–", "&ndash;", "&#8211;",
+                "&rsquo;", "&lsquo;", "&ldquo;", "&rdquo;",
+                "‘", "’", "“", "”", "✅"):
+        case.assertNotIn(bad, text, f"{bad!r} left in {where}")
+
+
+class TestEmDashSweep(unittest.TestCase):
+    """Rendered surfaces and verdict headlines after the 2026-11-04
+    em-dash sweep: punctuation changed, words and numbers did not."""
+
+    def test_headlines_use_colons(self):
+        _cls, word, _note = report._verdict(THIN, parcel_acres=10)
+        self.assertEqual(
+            word, "Strong yields, thin reserve: approvals decide "
+                  "this tract")
+        zero = _agg([(300, 0, 100, 150), (320, 5, 90, 140),
+                     (310, 8, 95, 145)])
+        _cls, word, _note = report._verdict(zero, parcel_acres=10)
+        self.assertEqual(
+            word, "Zero-yield records: approvals and water both open")
+
+    def test_headlines_and_notes_have_no_dashes(self):
+        for wells in (THIN, DEEP_STRONG, DEEP_LOW):
+            for acres in (None, 10):
+                _cls, word, note = report._verdict(wells,
+                                                   parcel_acres=acres)
+                assert_no_ai_typography(self, word, "verdict headline")
+                assert_no_ai_typography(self, note, "verdict note")
+
+    def test_ranges_say_to(self):
+        _cls, _word, note = report._verdict(DEEP_STRONG)
+        self.assertIn("12 to 20 gallons per minute", note)
+
+    def test_fixture_render_is_typography_clean(self):
+        order = TestFullSurfaceRender()._load("order.json")
+        geo = TestFullSurfaceRender()._load("geocode.json")
+        wells = TestFullSurfaceRender()._load("nearby_wells.json")
+        wq = TestFullSurfaceRender()._load("water_quality.json")
+        with tempfile.TemporaryDirectory() as tmp:
+            sb = setbacks.setback_screen(order, tmp)
+            screen.build_screen(order, geo, wells, wq, sb, tmp)
+            screen.build_screen_json(order, geo, wells, wq, sb, tmp)
+            packet_path = packet.build_packet(order, geo, wells, wq,
+                                              sb, tmp)
+            report.build_report(order, geo, wells, wq, sb,
+                                {"drillers": []}, tmp)
+            for p in sorted(Path(tmp).rglob("*")):
+                if p.is_file():
+                    assert_no_ai_typography(
+                        self, p.read_text(errors="replace"),
+                        f"rendered {p.name}")
+            packet_text = Path(packet_path).read_text()
+            self.assertIn("+$10k to $25k contingency band", packet_text)
+
+    def test_site_files_are_typography_clean(self):
+        site = Path(os.path.dirname(os.path.abspath(__file__))).parent \
+            / "site"
+        pages = [site / "index.html"] + sorted(
+            (site / "towns").glob("*.html"))
+        llms = site / "llms.txt"
+        if llms.exists():
+            pages.append(llms)
+        self.assertGreaterEqual(len(pages), 11)
+        for p in pages:
+            text = p.read_text(errors="replace")
+            assert_no_ai_typography(self, text, f"site {p.name}")
+            self.assertNotIn('class="icon"', text)
+            self.assertNotIn('class="big-icon"', text)
+
+
 if __name__ == "__main__":
     unittest.main()

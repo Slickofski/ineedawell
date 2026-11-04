@@ -5,12 +5,12 @@
       "id": "septic",
       "rule": "Well to septic system and its leaching field (where septic water drains into the soil), buried oil tank, or other pollution source",
       "minimum_ft": 75,
-      "condition": "Well with a required withdrawal rate under 10 gpm \u2014 the band a single-family home sits in.",
+      "condition": "Well with a required withdrawal rate under 10 gpm: the band a single-family home sits in.",
       "scales": "Bands follow the well's required withdrawal rate (what it serves), not its tested yield: 150 ft if the supply must deliver 10-50 gpm (e.g. one well serving several homes), 200 ft above 50 gpm. A single home sits in the under-10 band.",
       "source": "CT Public Health Code Reg. 19-13-B51d(a)(2)",
       "confidence": "CODE",
       "status": "needs_field_verification",
-      "finding": "We can't measure your lot from public records \u2014 your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
+      "finding": "We can't measure your lot from public records: your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
     },
     {
       "id": "watercourse",
@@ -21,7 +21,7 @@
       "source": "CT Public Health Code Reg. 19-13-B51d(a)(3)",
       "confidence": "CODE",
       "status": "needs_field_verification",
-      "finding": "We can't measure your lot from public records \u2014 your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
+      "finding": "We can't measure your lot from public records: your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
     },
     {
       "id": "sewer",
@@ -32,20 +32,20 @@
       "source": "CT Public Health Code Reg. 19-13-B51d(a)(2)",
       "confidence": "CODE",
       "status": "needs_field_verification",
-      "finding": "We can't measure your lot from public records \u2014 your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
+      "finding": "We can't measure your lot from public records: your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
     },
     {
       "id": "doubling_rule",
-      "rule": "Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow \u2014 the distance doubles",
+      "rule": "Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow: the distance doubles",
       "minimum_ft": 150,
-      "condition": "Applies when BOTH hold: soil percolation rate faster than 1.0 minute per inch, AND the bottom of the leaching system is less than 8 ft above ledge rock. For a single-family home the 75 ft distance becomes 150 ft. Only soil tests on the lot can settle whether this applies \u2014 it cannot be screened from public data.",
+      "condition": "Applies when BOTH hold: soil percolation rate faster than 1.0 minute per inch, AND the bottom of the leaching system is less than 8 ft above ledge rock. For a single-family home the 75 ft distance becomes 150 ft. Only soil tests on the lot can settle whether this applies: it cannot be screened from public data.",
       "scales": null,
       "source": "CT DPH Technical Standards for Subsurface Sewage Disposal Systems, Table 1 Item A (applied to wells via Reg. 19-13-B102d)",
       "confidence": "CODE",
       "status": "needs_field_verification",
-      "finding": "We can't measure your lot from public records \u2014 your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
+      "finding": "We can't measure your lot from public records: your surveyor or engineer confirms these distances on the site plan, and the health district checks them in the field before filing."
     }
   ],
-  "confidence_note": "State rules verified; district add-ons unconfirmed (South Windsor Health Department may publish its own \u2014 not yet checked). The district has the final word on your lot.",
+  "confidence_note": "State rules verified; district add-ons unconfirmed (South Windsor Health Department may publish its own: not yet checked). The district has the final word on your lot.",
   "note": "Screening-level checklist only. Not a substitute for survey, wetlands delineation, or field soil/perc tests."
 }

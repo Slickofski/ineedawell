@@ -168,7 +168,7 @@ class TestHeadlines(unittest.TestCase):
             [_row(500, 2, 60), _row(520, 3, 55), _row(480, 4, 70)])
         self.assertEqual(vcls, "good")
         self.assertEqual(
-            vword, "Workable for a house — low flow, deep reserve")
+            vword, "Workable for a house: low flow, deep reserve")
         # Household sentence leads the note; the hedge sits behind
         # the reserve sentence, never beside the headline.
         self.assertLess(vnote.index("can carry a household"),
@@ -181,7 +181,7 @@ class TestHeadlines(unittest.TestCase):
         self.assertEqual(vcls, "caution")
         self.assertEqual(
             vword,
-            "Strong flow, thin reserve — ask a driller before you commit")
+            "Strong flow, thin reserve: ask a driller before you commit")
 
     def test_recorded_yields_headline(self):
         vcls, vword, _ = self._verdict(
@@ -189,13 +189,13 @@ class TestHeadlines(unittest.TestCase):
         self.assertEqual(vcls, "caution")
         self.assertEqual(
             vword,
-            "Water on record, amount unproven — get driller opinions "
+            "Water on record, amount unproven: get driller opinions "
             "before you commit")
 
     def test_no_record_headline(self):
         vcls, vword, _ = self._verdict([])
         self.assertEqual(
-            vword, "No local record to lean on — budget for the deep end")
+            vword, "No local record to lean on: budget for the deep end")
 
     def test_tract_lift_headline(self):
         vcls, vword, _ = self._verdict(
@@ -204,7 +204,7 @@ class TestHeadlines(unittest.TestCase):
         self.assertEqual(vcls, "good")
         self.assertEqual(
             vword,
-            "Workable water, deep reserve — approvals decide this tract")
+            "Workable water, deep reserve: approvals decide this tract")
 
 
 class TestStorageStatsLead(unittest.TestCase):

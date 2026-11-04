@@ -87,7 +87,7 @@ def main():
                            "https://ineedawell.com")
         if out_of_scope:
             body = (
-                f"Thanks for writing — right now I Need a Well only "
+                f"Thanks for writing: right now I Need a Well only "
                 f"covers Connecticut properties, and "
                 f"{order['property_address']} looks like it's outside "
                 f"the area. I've noted your interest and I'll reach "
@@ -97,7 +97,7 @@ def main():
             body = (
                 f"I couldn't pin down {order['property_address']} on "
                 f"the map with enough certainty to build a report on "
-                f"it — could you double-check the spelling, or send a "
+                f"it: could you double-check the spelling, or send a "
                 f"nearby intersection or the listing link? I'll run "
                 f"it again right away.\n"
             )
@@ -105,10 +105,10 @@ def main():
             f"Subject: Re: your well report request\n"
             f"To: {c['email']}\n"
             f"\n"
-            f"Hi {c['name'].split()[0] if c.get('name') else 'there'} "
-            f"— Marcin here, from I Need a Well ({site}).\n"
+            f"Hi {c['name'].split()[0] if c.get('name') else 'there'}, "
+            f"Marcin here, from I Need a Well ({site}).\n"
             f"\n{body}\n"
-            f"— Marcin\n"
+            f"Marcin\n"
             f"I Need a Well \u00b7 {site}\n"
         )
         with open(os.path.join(order_dir, "customer_reply_draft.txt"), "w") as f:
@@ -134,7 +134,7 @@ def main():
     print("[6/7] driller shortlist")
     ranked = drillers.rank_drillers(order, geo, order_dir)
     for d in ranked["drillers"]:
-        print(f"      {d['company']} ({d['town']}) — {d['distance_miles']} mi")
+        print(f"      {d['company']} ({d['town']}): {d['distance_miles']} mi")
 
     print("[7/7] customer report")
     report_path = report.build_report(order, geo, wells, wq, sb, ranked, order_dir)
@@ -147,7 +147,7 @@ def main():
         f"\n"
         f"Hi {c['name'].split()[0]},\n"
         f"\n"
-        f"Your property well report is ready — attached.\n"
+        f"Your property well report is ready: attached.\n"
         f"\n"
         f"Bottom line up front: open the report and read the verdict box first; "
         f"everything else is the evidence behind it.\n"
@@ -156,7 +156,7 @@ def main():
         f"1. Call two or three drillers from the 'Who to call' section and ask "
         f"what depth they would permit for on this lot.\n"
         f"2. When the well is finished, confirm the lab runs the state-required "
-        f"arsenic and uranium panel — Connecticut requires both for new wells — "
+        f"arsenic and uranium panel (Connecticut requires both for new wells), "
         f"and ask whether radon makes sense for your lot.\n"
         f"\n"
         f"Questions about the report? Just reply to this email.\n"

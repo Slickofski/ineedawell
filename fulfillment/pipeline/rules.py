@@ -100,7 +100,7 @@ def governing_band(use: str = "single_family_home",
     if use in ("shared_supply", "large_supply"):
         raise ValueError(
             f"{use} requires an explicit required withdrawal rate "
-            "(required_gpm) — the band is not guessed (R22)")
+            "(required_gpm): the band is not guessed (R22)")
     return "under_10"
 
 
@@ -168,7 +168,7 @@ def well_setback_items(town: str = None, use: str = "single_family_home",
     base = get_rule(f"ct_b51d_pollution_{suffix}")["value_ft"]
     items.append({
         "id": "doubling_rule",
-        "rule": "Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow — the distance doubles",
+        "rule": "Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow: the distance doubles",
         "minimum_ft": base * dbl["multiplier"],
         "condition": dbl["condition"],
         "scales": None,
@@ -180,7 +180,7 @@ def well_setback_items(town: str = None, use: str = "single_family_home",
         g = get_rule("ncdhd_well_boundary_guidance")
         items.append({
             "id": "district_boundary_guidance",
-            "rule": "Well to property boundary — district guidance: keep 25 ft 'if possible' (guidance, not a state setback)",
+            "rule": "Well to property boundary. District guidance: keep 25 ft 'if possible' (guidance, not a state setback)",
             "minimum_ft": g["value_ft"],
             "condition": g["condition"],
             "scales": None,
@@ -203,7 +203,7 @@ def cost_entry(band: str) -> dict:
         if r.get("band") == band:
             return r
     raise RuntimeError(
-        f"rules_ct.json has no cost entry for band {band!r} — cost "
+        f"rules_ct.json has no cost entry for band {band!r}: cost "
         "figures come from the rules table or not at all")
 
 
@@ -255,9 +255,9 @@ def exception_paths_text() -> str:
     return (
         "If a distance genuinely cannot be met, the paths are narrow and "
         "specific: DPH can grant an exception to the separating-distance "
-        "requirements for a sewage system under CGS 19a-209c — affected "
+        "requirements for a sewage system under CGS 19a-209c: affected "
         "well owners must be notified by certified mail, and an approval "
-        "is not a defense against contamination claims — and the "
+        "is not a defense against contamination claims, and the "
         "Commissioner holds limited exception authority under Public "
         "Health Code 19-13-B51m(c). There is no general rule letting a "
         "health director reduce setbacks; do not plan around one."
@@ -274,9 +274,9 @@ def confidence_line(town: str = None) -> str:
                 "(district not yet mapped for this town).")
     if d["docs_state"] == "harvested":
         return (f"State rules verified; {d['name']} add-ons checked "
-                f"(Oct 2026) — the ones that apply are included below.")
+                f"(Oct 2026): the ones that apply are included below.")
     return (f"State rules verified; district add-ons unconfirmed "
-            f"({d['name']} may publish its own — not yet checked). "
+            f"({d['name']} may publish its own: not yet checked). "
             "The district has the final word on your lot.")
 
 
@@ -288,9 +288,9 @@ def confidence_line(town: str = None) -> str:
 # other JSON surfaces keep CODE/OPINION/GUIDANCE/UNVERIFIED).
 CONFIDENCE_PLAIN = {
     "CODE": "written in the state health code",
-    "OPINION": ("standard professional reading — not spelled out "
+    "OPINION": ("standard professional reading: not spelled out "
                 "word-for-word in the code"),
-    "GUIDANCE": "district guidance — not a state rule",
+    "GUIDANCE": "district guidance: not a state rule",
     "UNVERIFIED": "not yet verified",
 }
 
@@ -320,6 +320,6 @@ def doubling_caveat() -> str:
         "One rule can change this number: if the soil drains very fast "
         "(perc faster than 1 minute per inch) and ledge rock is shallow "
         "(leaching bottom less than 8 ft above it), the state doubles the "
-        "well-to-septic distance — 150 ft for a typical home. That is only "
+        "well-to-septic distance: 150 ft for a typical home. That is only "
         "known after a perc test, which happens at permit time."
     )

@@ -94,14 +94,14 @@ def main():
             json.dump(failed, f, indent=2)
         if tri["decision"] == "out_of_scope":
             body = (
-                f"Thanks for writing — right now the pilot only covers Connecticut "
+                f"Thanks for writing: right now the pilot only covers Connecticut "
                 f"properties, and {order['property_address']} looks like it's "
                 f"outside the area. I've noted your interest and I'll reach out "
                 f"if we expand.\n"
             )
         else:
             body = (
-                f"I couldn't pin down {order['property_address']} on the map — "
+                f"I couldn't pin down {order['property_address']} on the map: "
                 f"could you double-check the spelling, or send a nearby "
                 f"intersection or the listing link? I'll run it again right away.\n"
             )
@@ -109,9 +109,9 @@ def main():
             f"Subject: Re: your free well snapshot request\n"
             f"To: {c['email']}\n"
             f"\n"
-            f"Hi — Marcin here, from I Need a Well ({site}).\n"
+            f"Hi, Marcin here, from I Need a Well ({site}).\n"
             f"\n{body}\n"
-            f"— Marcin\n"
+            f"Marcin\n"
             f"I Need a Well · {site} (free pilot)\n"
         )
         with open(os.path.join(order_dir, "customer_reply_draft.txt"), "w") as f:
@@ -125,7 +125,7 @@ def main():
             "stage": "triage",
             "triage": {k: tri[k] for k in
                        ("address_scope", "address_scope_confidence", "genuine_p")},
-            "note": "Held for human review — nothing sent to the customer.",
+            "note": "Held for human review: nothing sent to the customer.",
         }
         with open(os.path.join(order_dir, "fulfillment_failed.json"), "w") as f:
             json.dump(failed, f, indent=2)
@@ -156,7 +156,7 @@ def main():
         site = report._biz(report.load_business(), "website", "https://ineedawell.com")
         if out_of_scope:
             body = (
-                f"Thanks for writing — right now the pilot only covers "
+                f"Thanks for writing: right now the pilot only covers "
                 f"Connecticut properties, and {order['property_address']} "
                 f"looks like it's outside the area. I've noted your "
                 f"interest and I'll reach out if we expand.\n"
@@ -164,7 +164,7 @@ def main():
         else:
             body = (
                 f"I couldn't pin down {order['property_address']} on the "
-                f"map — could you double-check the spelling, or send a "
+                f"map: could you double-check the spelling, or send a "
                 f"nearby intersection or the listing link? I'll run it "
                 f"again right away.\n"
             )
@@ -172,9 +172,9 @@ def main():
             f"Subject: Re: your free well snapshot request\n"
             f"To: {c['email']}\n"
             f"\n"
-            f"Hi \u2014 Marcin here, from I Need a Well ({site}).\n"
+            f"Hi, Marcin here, from I Need a Well ({site}).\n"
             f"\n{body}\n"
-            f"— Marcin\n"
+            f"Marcin\n"
             f"I Need a Well \u00b7 {site}\n"
         )
         with open(os.path.join(order_dir, "customer_reply_draft.txt"), "w") as f:
@@ -199,14 +199,14 @@ def main():
             f"Subject: Re: your free well snapshot request\n"
             f"To: {c['email']}\n"
             f"\n"
-            f"Hi — Marcin here, from I Need a Well ({site}).\n"
+            f"Hi, Marcin here, from I Need a Well ({site}).\n"
             f"\n"
-            f"Thanks for writing — right now the pilot only covers Connecticut "
+            f"Thanks for writing: right now the pilot only covers Connecticut "
             f"properties, and {order['property_address']} looks like it's "
             f"outside the area. I've noted your interest and I'll reach out "
             f"if we expand.\n"
             f"\n"
-            f"— Marcin\n"
+            f"Marcin\n"
             f"I Need a Well \u00b7 {site}\n"
         )
         with open(os.path.join(order_dir, "customer_reply_draft.txt"), "w") as f:
@@ -255,7 +255,7 @@ def main():
             f"(you pay for the attempt even if it's dry)\n"
         )
     else:
-        band_block = "\nCost band: not enough nearby depth records to price — the snapshot explains why.\n"
+        band_block = "\nCost band: not enough nearby depth records to price: the snapshot explains why.\n"
     flags = wq.get("flags") or []
 
     def _flag_line(f):
@@ -269,7 +269,7 @@ def main():
     # plain-text email must not point at it either.
     dossier_note = (
         "(There's also a question inside the snapshot about a $39 full "
-        "report — an honest YES or NO helps more than politeness.)\n"
+        "report: an honest YES or NO helps more than politeness.)\n"
         "\n"
     ) if FLAGS.DOSSIER_INTENT_ENABLED else ""
     site = report._biz(report.load_business(), "website", "https://ineedawell.com")
@@ -277,15 +277,15 @@ def main():
         f"Subject: Your free well snapshot for {order['property_address']}\n"
         f"To: {c['email']}\n"
         f"\n"
-        f"Hi — Marcin here, from I Need a Well ({site}).\n"
+        f"Hi, Marcin here, from I Need a Well ({site}).\n"
         f"\n"
-        f"Your free well snapshot for {order['property_address']} is attached — "
+        f"Your free well snapshot for {order['property_address']} is attached: "
         f"here's the 60-second answer so you don't even have to open it:\n"
         f"\n"
         f"VERDICT: {vword}\n"
         f"{vnote}\n"
         f"{band_block}\n"
-        f"Water: what to test (the lab confirms all of this — the state-required panel covers the big ones):\n"
+        f"Water: what to test (the lab confirms all of this: the state-required panel covers the big ones):\n"
         f"{flags_block}\n"
         f"\n"
         f"The attached snapshot has the full evidence: nearby well records, "
@@ -295,9 +295,9 @@ def main():
         f"most useful and what was missing. That decides what gets built next.\n"
         f"\n"
         f"{dossier_note}"
-        f"And whether you reply or not — thanks for reading. That's what keeps this free.\n"
+        f"And whether you reply or not: thanks for reading. That's what keeps this free.\n"
         f"\n"
-        f"— Marcin\n"
+        f"Marcin\n"
         f"I Need a Well · {site} (free pilot)\n"
     )
     with open(os.path.join(order_dir, "delivery_email_draft.txt"), "w") as f:

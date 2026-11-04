@@ -33,7 +33,7 @@ def setback_screen(order: dict, order_dir: str) -> dict:
                 **item,
                 "status": "needs_field_verification",
                 "finding": (
-                    "We can't measure your lot from public records — your "
+                    "We can't measure your lot from public records: your "
                     "surveyor or engineer confirms these distances on the "
                     "site plan, and the health district checks them in the "
                     "field before filing."

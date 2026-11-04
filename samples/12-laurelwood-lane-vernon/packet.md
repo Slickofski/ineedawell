@@ -1,4 +1,4 @@
-# DRAFT — Well Permit Packet
+# DRAFT: Well Permit Packet
 
 **Not filed. Not a permit.** Generated 2026-11-04 for order 12-laurelwood-lane-vernon.
 Prefilled from public data + your order details. Verify every rule, fee, and
@@ -18,7 +18,7 @@ parcel detail against current authoritative documents before filing.
 
 ## 3. Nearby well evidence
 
-Source: CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01). 21 nearby water-supply wells on record: 21 report depth, drilled 160–560 ft (median 305 ft); 21 report yield, 2–30 gallons per minute (gpm).
+Source: CT DCP Socrata wphv-ux6v (online submissions since 2021-01-01). 21 nearby water-supply wells on record: 21 report depth, drilled 160 to 560 ft (median 305 ft); 21 report yield, 2 to 30 gallons per minute (gpm).
 
 | Address | Depth | Yield | Static level (how far down the water sits) | Level during test | Date |
 |---|---|---|---|---|---|
@@ -72,53 +72,52 @@ record the water levels, method and duration behind it:
 - 12 Wildwood Rd Vernon: resting level 20 ft, level during the test 250 ft, recorded yield 7 gpm, tested with compressed air over 4 hours.
 
 **Bottom line:** sustained yield is unestablished from these filings.
-Each one records a single endpoint level — no measurement of whether
+Each one records a single endpoint level: no measurement of whether
 the level stabilized during the test, and no recovery measurement
-after it — so no conclusion about sustained production can be drawn
+after it, so no conclusion about sustained production can be drawn
 from them. Read the yields as what the driller recorded that day, and
 make any driller you hire talk through the deep, low-yield downside
 before you sign.
 
-**The borehole is a storage tank, not just a straw.** A standard 6-inch well holds about 1.5 gallons for every foot of water standing in it, and the typical neighbor well here stands about 260 ft deep in water — roughly 382 gallons in reserve before the aquifer has to keep up.
+**The borehole is a storage tank, not just a straw.** A standard 6-inch well holds about 1.5 gallons for every foot of water standing in it, and the typical neighbor well here stands about 260 ft deep in water: roughly 382 gallons in reserve before the aquifer has to keep up.
 
 1 filing(s) left out: resting level missing or impossible against the depth.
 6-inch bore assumed; a wider or narrower bore holds more or less per foot. The pump also sits a few feet off the bottom, so treat the figure as 'about,' not exact.
 
 **Reading this:** budget against the geology, not the average. The honest
-downside is a deep, low-yield hole — under the standard driller contract you
-still pay for the attempt (+$10k–$25k contingency band).
+downside is a deep, low-yield hole: under the standard driller contract you
+still pay for the attempt (+$10k to $25k contingency band).
 
 ## 4. Water-quality flags
 
-- Water quality — the state panel covers it: Connecticut requires arsenic and uranium testing on every new well — the two contaminants that actually show up in CT bedrock — so the lab runs the state panel as routine. Radon is optional; ask the lab whether to add it, and get the panel price when you book.
+- Water quality: the state panel covers it: Connecticut requires arsenic and uranium testing on every new well: the two contaminants that actually show up in CT bedrock: so the lab runs the state panel as routine. Radon is optional; ask the lab whether to add it, and get the panel price when you book.
 
-- For a NEW well, Connecticut's required baseline test panel (15 tests —
-  CGS 19a-37(c)(2), effective 2022-10-01) includes arsenic and uranium by law. Lead joins
+- For a NEW well, Connecticut's required baseline test panel (15 tests: CGS 19a-37(c)(2), effective 2022-10-01) includes arsenic and uranium by law. Lead joins
   the required panel as a first-draw sample when the new well serves an EXISTING structure.
-  For an existing well tested voluntarily, none of these are automatic — request them on
+  For an existing well tested voluntarily, none of these are automatic: request them on
   the lab panel.
 - Risk flags are not a prediction. Laboratory testing of the finished well is the final word.
 
-## 5. Setback checklist (CT rules — your engineer confirms each distance on the site plan)
+## 5. Setback checklist (CT rules: your engineer confirms each distance on the site plan)
 
 A setback is the legal distance a well must sit from septic and water.
 
-State rules verified; North Central District Health Department (NCDHD) add-ons checked (Oct 2026) — the ones that apply are included below.
+State rules verified; North Central District Health Department (NCDHD) add-ons checked (Oct 2026): the ones that apply are included below.
 
 | Separation | Minimum | Status |
 |---|---|---|
 | Well to septic system and its leaching field (where septic water drains into the soil), buried oil tank, or other pollution source | 75 ft | To confirm on the site plan |
 | Well to surface water (high-water mark) / surface-water or foundation drain | 25 ft | To confirm on the site plan |
 | Well to tight-joint sewer (extra-heavy cast iron, leaded joints, or equal) | 25 ft | To confirm on the site plan |
-| Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow — the distance doubles | 150 ft | To confirm on the site plan |
-| Well to property boundary — district guidance: keep 25 ft 'if possible' (guidance, not a state setback) | 25 ft | To confirm on the site plan |
+| Well to the leaching system (where septic water drains into the soil) IF the soil is fast AND the ledge is shallow: the distance doubles | 150 ft | To confirm on the site plan |
+| Well to property boundary. District guidance: keep 25 ft 'if possible' (guidance, not a state setback) | 25 ft | To confirm on the site plan |
 
 Screening-level only. Not a substitute for survey, wetlands delineation, or
-field soil/perc tests. One rule can change this number: if the soil drains very fast (perc faster than 1 minute per inch) and ledge rock is shallow (leaching bottom less than 8 ft above it), the state doubles the well-to-septic distance — 150 ft for a typical home. That is only known after a perc test, which happens at permit time.
+field soil/perc tests. One rule can change this number: if the soil drains very fast (perc faster than 1 minute per inch) and ledge rock is shallow (leaching bottom less than 8 ft above it), the state doubles the well-to-septic distance: 150 ft for a typical home. That is only known after a perc test, which happens at permit time.
 
-If a distance genuinely cannot be met, the paths are narrow and specific: DPH can grant an exception to the separating-distance requirements for a sewage system under CGS 19a-209c — affected well owners must be notified by certified mail, and an approval is not a defense against contamination claims — and the Commissioner holds limited exception authority under Public Health Code 19-13-B51m(c). There is no general rule letting a health director reduce setbacks; do not plan around one.
+If a distance genuinely cannot be met, the paths are narrow and specific: DPH can grant an exception to the separating-distance requirements for a sewage system under CGS 19a-209c: affected well owners must be notified by certified mail, and an approval is not a defense against contamination claims, and the Commissioner holds limited exception authority under Public Health Code 19-13-B51m(c). There is no general rule letting a health director reduce setbacks; do not plan around one.
 
-## 6. Site sketch — PLACEHOLDER
+## 6. Site sketch: PLACEHOLDER
 
 [Schematic well-location sketch to be finalized with the driller + health
 district from the engineered site plan. Must show: the well relative to at
@@ -127,13 +126,13 @@ property lines, and any watercourses.]
 
 ## 7. Filing checklist & fees
 
-- [ ] Confirm the ownership path — the owner of record (or authorized agent) completes the owner sections
+- [ ] Confirm the ownership path: the owner of record (or authorized agent) completes the owner sections
 - [ ] Health-district site investigation, soil and percolation testing (North Central District: $250 per lot, fee schedule effective July 1, 2026. Fees vary by district, so confirm yours before you budget.)
-- [ ] Hire a CT-licensed well driller — the driller completes and signs the state permit as applicant (CT WWC-________)
+- [ ] Hire a CT-licensed well driller: the driller completes and signs the state permit as applicant (CT WWC-________)
 - [ ] File the CT DCP Well Drilling Permit via the health district (North Central District: $200, fee schedule effective July 1, 2026. Fees vary by district, so confirm yours.) The permit must be countersigned by the Director of Health or an agent before it is valid.
-- [ ] Run the septic track in parallel if needed (construction permit + plan review — verify current fees)
-- [ ] Drill — the driller files the Well Completion Report with you, CT DCP, and the health district
-- [ ] Test the water — the state-required new-well baseline panel (includes arsenic and uranium; first-draw lead too when the well serves an existing structure); add radon — recommended in CT bedrock country, not required — given local bedrock
+- [ ] Run the septic track in parallel if needed (construction permit + plan review; verify current fees)
+- [ ] Drill: the driller files the Well Completion Report with you, CT DCP, and the health district
+- [ ] Test the water: the state-required new-well baseline panel (includes arsenic and uranium; first-draw lead too when the well serves an existing structure); add radon: recommended in CT bedrock country, not required, given local bedrock
 
 Fees change. Confirm the current schedule with the health district when you file.
 Drilling itself is quoted separately by the driller you choose.
@@ -155,7 +154,7 @@ Business: ______________________  CT WWC-# __________  Signature: ______________
 
 **Health district (countersignature):**
 
-Approved / Rejected — Officer: ______________________  Signature: ______________________  Date: __________
+Approved / Rejected: Officer: ______________________  Signature: ______________________  Date: __________
 
 ---
-*DRAFT — generated 2026-11-04. Not filed with any agency. Not legal advice.*
+*DRAFT: generated 2026-11-04. Not filed with any agency. Not legal advice.*

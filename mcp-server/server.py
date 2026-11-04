@@ -102,7 +102,7 @@ mcp = FastMCP(
         "data well records since 2021, USGS). Connecticut addresses "
         "only: an out-of-state address returns a not_in_connecticut "
         "error, never a screen. This is a screening aid built from "
-        "public records — it does not pick a drill spot, and a null "
+        "public records: it does not pick a drill spot, and a null "
         "average means nobody reported that value, not that it is zero."
     ),
     middleware=[
@@ -170,7 +170,7 @@ async def _run_engine_once(address: str) -> tuple[int, dict]:
         await _terminate_owned(proc)
         raise ToolError(
             "data_source_unavailable: The screening engine did not finish "
-            "within %d seconds — a public data source is likely not "
+            "within %d seconds: a public data source is likely not "
             "answering. Wait a moment and try again." % int(ENGINE_TIMEOUT_S)
         )
     except asyncio.CancelledError:
@@ -206,7 +206,7 @@ async def screen_address(
             description=(
                 "A US street address, e.g. '193 Wells Rd, East Windsor, "
                 "CT 06016'. Connecticut addresses only. Village mailing "
-                "names (Moodus, Hazardville, Broad Brook) are accepted — "
+                "names (Moodus, Hazardville, Broad Brook) are accepted: "
                 "if one is filed under its parent town, the result says so."
             ),
         ),
@@ -259,7 +259,7 @@ if __name__ == "__main__":
 
     if not ENGINE_PATH.exists():
         log.error(
-            "screening engine not found — tried: %s. The engine ships "
+            "screening engine not found: tried: %s. The engine ships "
             "in the repo at well-data-skill/bin/wellscreen.py (beside "
             "the mcp-server/ folder); restore that copy, or set "
             "WELLSCREEN_PATH to the engine's location.",

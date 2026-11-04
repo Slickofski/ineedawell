@@ -30,10 +30,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from pipeline import packet, report, screen, water_quality  # noqa: E402
 
-TITLE = "Water quality — the state panel covers it"
+TITLE = "Water quality: the state panel covers it"
 SUMMARY = ("Connecticut requires arsenic and uranium testing on every "
-           "new well — the two contaminants that actually show up in "
-           "CT bedrock — so the lab runs the state panel as routine. "
+           "new well: the two contaminants that actually show up in "
+           "CT bedrock, so the lab runs the state panel as routine. "
            "Radon is optional; ask the lab whether to add it, and get "
            "the panel price when you book.")
 DETAIL = "Water Quality Portal: synthetic detail for repro only."

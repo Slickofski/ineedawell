@@ -200,7 +200,7 @@ def _village_fallback(address):
     info = {"geocode_fallback": {
         "requested_locality": village.title(),
         "parent_town": town,
-        "note": ("No geocode match for '%s' — %s is a village of %s, so the "
+        "note": ("No geocode match for '%s': %s is a village of %s, so the "
                  "address was retried and matched under %s."
                  % (village.title(), village.title(), town, town)),
     }}
@@ -384,7 +384,7 @@ def main():
         _emit_error(
             "not_in_connecticut",
             "This tool screens Connecticut addresses only. The address "
-            "matched in %s, so no screen was run — Connecticut well "
+            "matched in %s, so no screen was run: Connecticut well "
             "records were not used for a non-Connecticut address."
             % (e.state or "another state"),
             2, address=a.address, matched_address=e.matched_address,
@@ -443,7 +443,7 @@ def main():
         usgs_count = len(usgs_wells)
     except DataSourceError:
         usgs_note = ("The USGS lookup failed after retries, so the USGS well "
-                     "site count is unavailable — it is not zero.")
+                     "site count is unavailable: it is not zero.")
 
     casing = _avg_with_denominator(properties, "casing_ft")
     yld = _avg_with_denominator(properties, "yield_test_result")

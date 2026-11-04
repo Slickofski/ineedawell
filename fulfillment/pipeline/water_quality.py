@@ -15,6 +15,7 @@ radon. Every output ends with: lab testing is the final word.
 import csv
 import io
 import json
+import re
 
 import requests
 
@@ -86,11 +87,14 @@ def format_flag(flag) -> str:
     technical backing stays behind the snapshot's <details> toggle and
     in screen.json's structured flags, never inline (Marcin's
     two-layer copy rule). Legacy plain-string flags pass through
-    unchanged.
+    _clean_legacy: older stage versions wrote them with em dashes
+    and smart quotes, and finished customer copy never ships those
+    (em-dash sweep, 2026-11-04).
     """
     if isinstance(flag, str):
-        return flag
+        return _clean_legacy(flag)
     if isinstance(flag, dict):
+        flag = clean_flag(flag)
         title = (flag.get("title") or "").strip()
         summary = (flag.get("summary") or "").strip()
         if title and summary:
@@ -99,6 +103,35 @@ def format_flag(flag) -> str:
     if flag is None:
         return ""
     return str(flag)
+
+
+def clean_flag(flag):
+    """A flag with its customer-copy fields punctuation-cleaned
+    (em-dash sweep, 2026-11-04). Stored stage data written before
+    the sweep can carry em dashes in a dict flag's title, summary,
+    or detail; every surface that prints a flag routes through here
+    or through format_flag, so a stored render matches what the
+    current stage would write. Non-copy fields pass through."""
+    if isinstance(flag, str):
+        return _clean_legacy(flag)
+    if isinstance(flag, dict):
+        out = dict(flag)
+        for key in ("title", "summary", "detail"):
+            if isinstance(out.get(key), str):
+                out[key] = _clean_legacy(out[key])
+        return out
+    return flag
+
+
+def _clean_legacy(text: str) -> str:
+    """Punctuation-only cleanup for flag text written by older stage
+    versions (em-dash sweep, 2026-11-04): em dashes become colons,
+    numeric en-dash ranges become "to", smart quotes become straight
+    ASCII. Words and numbers never change."""
+    text = text.replace(" \u2014 ", ": ").replace("\u2014", ": ")
+    text = re.sub(r"(\d)\u2013(\d)", r"\1 to \2", text)
+    return (text.replace("\u2019", "'").replace("\u2018", "'")
+            .replace("\u201c", '"').replace("\u201d", '"'))
 
 
 def water_quality(order: dict, geo: dict, order_dir: str) -> dict:
@@ -113,14 +146,14 @@ def water_quality(order: dict, geo: dict, order_dir: str) -> dict:
     if (arsenic["result_rows"] or 0) > 0:
         detail_bits.append(
             f"Water Quality Portal: {arsenic['result_rows']} uninterpreted "
-            "regional arsenic sample rows within 25 miles — not a parcel "
+            "regional arsenic sample rows within 25 miles: not a parcel "
             "finding. CT DPH/USGS private-well study: 3.9% of sampled CT "
             "wells exceeded the arsenic MCL (the state's safety limit)."
         )
     if (uranium["result_rows"] or 0) > 0:
         detail_bits.append(
             f"Water Quality Portal: {uranium['result_rows']} uninterpreted "
-            "regional uranium sample rows within 25 miles — not a parcel "
+            "regional uranium sample rows within 25 miles: not a parcel "
             "finding. CT DPH/USGS private-well study: 4.7% exceeded the "
             "uranium MCL (the state's safety limit)."
         )
@@ -128,14 +161,14 @@ def water_quality(order: dict, geo: dict, order_dir: str) -> dict:
         if block["status"] in ("invalid", "unavailable"):
             detail_bits.append(
                 f"Water Quality Portal {name} count unavailable "
-                f"(response {block['status']}) — the regional sample "
+                f"(response {block['status']}): the regional sample "
                 f"count is unavailable (not zero); the study rates "
                 f"above still apply.")
     detail_bits.append("No queryable public result dataset for radon in water found.")
     flags.append(_flag(
-        "Water quality — the state panel covers it",
-        "Connecticut requires arsenic and uranium testing on every new well — "
-        "the two contaminants that actually show up in CT bedrock — so the "
+        "Water quality: the state panel covers it",
+        "Connecticut requires arsenic and uranium testing on every new well: "
+        "the two contaminants that actually show up in CT bedrock, so the "
         "lab runs the state panel as routine. Radon is optional; ask the lab "
         "whether to add it, and get the panel price when you book.",
         " ".join(detail_bits)
@@ -150,7 +183,7 @@ def water_quality(order: dict, geo: dict, order_dir: str) -> dict:
         "note": "Counts are regional sample rows, not parcel predictions. "
                 "Connecticut requires arsenic and uranium testing for newly "
                 "constructed private and semipublic wells (CT DPH, effective "
-                "Oct 1, 2022) — confirm the exact panel with a certified lab.",
+                "Oct 1, 2022): confirm the exact panel with a certified lab.",
         "final_word": FINAL_WORD,
     }
     with open(f"{order_dir}/water_quality.json", "w") as f:
