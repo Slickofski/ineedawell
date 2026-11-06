@@ -57,7 +57,7 @@ cd fulfillment
 python3 -m unittest discover
 ```
 
-The full suite (220 tests), the fulfillment pipeline tests plus the Jev
+The full suite (243 tests), the fulfillment pipeline tests plus the Jev
 triage tests, runs under that one command, uses mocked/synthetic data,
 and needs no network and no credentials.
 
